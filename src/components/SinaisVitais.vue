@@ -1,34 +1,32 @@
 <template>
-  <form id="form-sinais-vitais">
-      <v-container>
+  <v-app>
+    <v-main @submit.prevent="salvar">
+      <v-container fluid>
         <v-row>
           <v-col cols="12" md="4">
             <v-text-field
-              v-model="fr"
+              v-model="sinalVital.frequencia_respiratoria"
               label="FR (rpm)"
               required
-              @input="$v.fr.$touch()"
-              @blur="$v.fr.$touch()"
+              
             >
             </v-text-field>
           </v-col>
           <v-col cols="12" md="4">
             <v-text-field
-              v-model="pas"
+              v-model="sinalVital.pa_sistolica"
               label="PAs"
               required
-              @input="$v.fr.$touch()"
-              @blur="$v.fr.$touch()"
+             
             >
             </v-text-field>
           </v-col>
           <v-col cols="12" md="4">
             <v-text-field
-              v-model="pad"
+              v-model="sinalVital.pa_diastolica"
               label="PAd"
               required
-              @input="$v.fr.$touch()"
-              @blur="$v.fr.$touch()"
+              
             >
             </v-text-field>
           </v-col>
@@ -37,41 +35,47 @@
         <v-row>
           <v-col cols="12" md="4">
             <v-text-field
-              v-model="pam"
+              v-model="sinalVital.pa_media"
               label="PAm"
               required
-              @input="$v.fr.$touch()"
-              @blur="$v.fr.$touch()"
+              
             >
             </v-text-field>
           </v-col>
           <v-col cols="12" md="4">
             <v-text-field
-              v-model="spo2"
+              v-model="sinalVital.saturacao"
               label="spO2"
               required
-              @input="$v.fr.$touch()"
-              @blur="$v.fr.$touch()"
+         
             >
             </v-text-field>
           </v-col>
           <v-col cols="12" md="4">
             <v-text-field
-              v-model="fc"
-              :error-messages="emailErrors"
+              v-model="sinalVital.frequencia_cardiaca"
               label="FC"
               required
-              @input="$v.fr.$touch()"
-              @blur="$v.fr.$touch()"
+            
             >
             </v-text-field>
           </v-col>
         </v-row>
         <v-row>
+          <!-- <v-col cols="12" md="4">
+            <v-text-field
+              v-model="glicemia"
+              label="Glicemia"
+              required
+              @input="$v.fr.$touch()"
+              @blur="$v.fr.$touch()"
+            >
+            </v-text-field>
+          </v-col> -->
           <v-col cols="12" md="4">
             <v-subheader>Temperatura</v-subheader>
             <v-slider
-              v-model="value"
+              v-model="sinalVital.temperatura"
               step="0.5"
               thumb-label
               ticks
@@ -83,18 +87,47 @@
         </v-row>
       </v-container>
 
-    <div id="div-botoes" align="right">
-      <v-btn color="success" class="mr-4" @click="validate">Salvar</v-btn>
+      <div id="div-botoes" align="right">
+        <v-btn color="success" class="mr-4">Salvar</v-btn>
 
-      <v-btn color="error" class="mr-4" @click="reset"> Cancelar </v-btn>
-    </div>
-  </form>
-
+        <v-btn color="error" class="mr-4" > Cancelar </v-btn>
+      </div>
+    </v-main>
+  </v-app>
 </template>
 
 <script>
+import Sinais from "../services/sinaisvitais";
+
 export default {
   name: "SinaisVitais",
+  data() {
+    return {
+      sinalVital: {
+        frequencia_respiratoria: "",
+        pa_sistolica: "",
+        pa_diastolica: "",
+        pa_media: "",
+        saturacao: "",
+        frequencia_cardiaca: "",
+        temperatura: "",
+      },
+      sinaisvitais: [],
+    };
+  },
+
+  mounted() {
+    Sinais.listar().then((resposta) => {
+      console.log(resposta.data);
+      this.sinaisvitais = resposta.data;
+    });
+  },
+
+  methods:{
+    salvar(){
+      alert(this.sinalVital.frequencia_respiratoria)
+    }
+  }
 };
 </script>
 
