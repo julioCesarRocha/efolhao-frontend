@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-main @submit.prevent="salvar">
+    <v-form @submit.prevent="salvar">
       <v-container fluid>
         <v-row>
           <v-col cols="12" md="4">
@@ -92,7 +92,7 @@
 
         <v-btn color="error" class="mr-4" > Cancelar </v-btn>
       </div>
-    </v-main>
+    </v-form>
   </v-app>
 </template>
 
@@ -125,7 +125,9 @@ export default {
 
   methods:{
     salvar(){
-      alert(this.sinalVital.frequencia_respiratoria)
+      Sinais.salvar(this.sinalVital).then(resposta => {
+        alert(resposta.data)
+      })
     }
   }
 };

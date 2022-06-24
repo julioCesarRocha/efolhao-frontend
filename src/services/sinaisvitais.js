@@ -1,7 +1,10 @@
-import { fetch } from './config'
+import { http } from './config'
 
 export default {
     listar: () => {
-        return fetch.get('sinaisvitais')
+        return http.get('sinaisvitais')
+    },
+    salvar:(sinalVital) => {
+        return http.post('sinalVital', sinalVital)
     }
 }
