@@ -4,7 +4,6 @@
     <v-spacer></v-spacer>
     <SinaisVitais />
     <v-main>
-      <router-view />
     </v-main>
   </v-app>
 </template>

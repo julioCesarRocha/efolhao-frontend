@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-form @submit.prevent="salvar">
+    <v-form>
       <v-container fluid>
         <v-row>
           <v-col cols="12" md="4">
@@ -88,7 +88,7 @@
       </v-container>
 
       <div id="div-botoes" align="right">
-        <v-btn color="success" class="mr-4">Salvar</v-btn>
+        <v-btn color="success" class="mr-4" @submit="salvar">Salvar</v-btn>
 
         <v-btn color="error" class="mr-4" > Cancelar </v-btn>
       </div>
@@ -104,13 +104,13 @@ export default {
   data() {
     return {
       sinalVital: {
-        frequencia_respiratoria: "",
-        pa_sistolica: "",
-        pa_diastolica: "",
-        pa_media: "",
-        saturacao: "",
-        frequencia_cardiaca: "",
-        temperatura: "",
+        frequencia_respiratoria: this.frequencia_respiratoria,
+        pa_sistolica: this.pa_sistolica,
+        pa_diastolica: this.pa_diastolica,
+        pa_media: this.pa_media,
+        saturacao: this.saturacao,
+        frequencia_cardiaca: this.saturacao,
+        temperatura: this.temperatura,
       },
       sinaisvitais: [],
     };
@@ -121,10 +121,11 @@ export default {
       console.log(resposta.data);
       this.sinaisvitais = resposta.data;
     });
+    
   },
 
   methods:{
-    salvar(){
+    async salvar() {
       Sinais.salvar(this.sinalVital).then(resposta => {
         alert(resposta.data)
       })
