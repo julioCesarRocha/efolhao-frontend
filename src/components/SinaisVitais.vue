@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-form>
+    <v-form @submit="salvar">
       <v-container fluid>
         <v-row>
           <v-col cols="12" md="4">
@@ -88,7 +88,7 @@
       </v-container>
 
       <div id="div-botoes" align="right">
-        <v-btn color="success" class="mr-4" @submit="salvar">Salvar</v-btn>
+        <v-btn color="success" class="mr-4">Salvar</v-btn>
 
         <v-btn color="error" class="mr-4" > Cancelar </v-btn>
       </div>
@@ -115,6 +115,7 @@ export default {
       sinaisvitais: [],
     };
   },
+  methods:{
 
   mounted() {
     Sinais.listar().then((resposta) => {
@@ -124,9 +125,9 @@ export default {
     
   },
 
-  methods:{
     async salvar() {
       Sinais.salvar(this.sinalVital).then(resposta => {
+        this.produto = {}
         alert(resposta.data)
       })
     }

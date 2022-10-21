@@ -5,6 +5,6 @@ export default {
         return http.get('sinaisvitais')
     },
     salvar:(sinalVital) => {
-        return http.post('sinalVital', sinalVital)
+        return http.post('sinaisvitais', sinalVital)
     }
 }
