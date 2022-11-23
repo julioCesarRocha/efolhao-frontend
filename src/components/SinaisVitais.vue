@@ -1,11 +1,11 @@
 <template>
   <v-app>
-    <v-form @submit="salvar">
+    <v-form>
       <v-container fluid>
         <v-row>
           <v-col cols="12" md="4">
             <v-text-field
-              v-model="sinalVital.frequencia_respiratoria"
+              v-model="frequencia_respiratoria"
               label="FR (rpm)"
               required
               
@@ -14,7 +14,7 @@
           </v-col>
           <v-col cols="12" md="4">
             <v-text-field
-              v-model="sinalVital.pa_sistolica"
+              v-model="pa_sistolica"
               label="PAs"
               required
              
@@ -23,7 +23,7 @@
           </v-col>
           <v-col cols="12" md="4">
             <v-text-field
-              v-model="sinalVital.pa_diastolica"
+              v-model="pa_diastolica"
               label="PAd"
               required
               
@@ -35,7 +35,7 @@
         <v-row>
           <v-col cols="12" md="4">
             <v-text-field
-              v-model="sinalVital.pa_media"
+              v-model="pa_media"
               label="PAm"
               required
               
@@ -44,7 +44,7 @@
           </v-col>
           <v-col cols="12" md="4">
             <v-text-field
-              v-model="sinalVital.saturacao"
+              v-model="saturacao"
               label="spO2"
               required
          
@@ -53,7 +53,7 @@
           </v-col>
           <v-col cols="12" md="4">
             <v-text-field
-              v-model="sinalVital.frequencia_cardiaca"
+              v-model="frequencia_cardiaca"
               label="FC"
               required
             
@@ -75,7 +75,7 @@
           <v-col cols="12" md="4">
             <v-subheader>Temperatura</v-subheader>
             <v-slider
-              v-model="sinalVital.temperatura"
+              v-model="temperatura"
               step="0.5"
               thumb-label
               ticks
@@ -88,7 +88,7 @@
       </v-container>
 
       <div id="div-botoes" align="right">
-        <v-btn color="success" class="mr-4">Salvar</v-btn>
+        <v-btn color="success" class="mr-4" @click="salvar">Salvar</v-btn>
 
         <v-btn color="error" class="mr-4" > Cancelar </v-btn>
       </div>
@@ -103,7 +103,6 @@ export default {
   name: "SinaisVitais",
   data() {
     return {
-      sinalVital: {
         frequencia_respiratoria: this.frequencia_respiratoria,
         pa_sistolica: this.pa_sistolica,
         pa_diastolica: this.pa_diastolica,
@@ -111,8 +110,7 @@ export default {
         saturacao: this.saturacao,
         frequencia_cardiaca: this.saturacao,
         temperatura: this.temperatura,
-      },
-      sinaisvitais: [],
+      // sinaisvitais: [],
     };
   },
   methods:{
@@ -125,11 +123,36 @@ export default {
     
   },
 
+    // async salvar() {
+    //   Sinais.salvar(this.sinalVital).then(response => {
+    //     this.produto = {}
+    //     alert(response.data)
+    //   })
+    // }
+
     async salvar() {
-      Sinais.salvar(this.sinalVital).then(resposta => {
-        this.produto = {}
-        alert(resposta.data)
-      })
+      // e.preventDefault();
+
+      console.log(this.sinalVital);
+      const data = {
+        frequencia_respiratoria: this.frequencia_respiratoria,
+        pa_sistolica: this.pa_sistolica,
+        pa_diastolica: this.pa_diastolica,
+        pa_media: this.pa_media,
+        saturacao: this.saturacao,
+        frequencia_cardiaca: this.saturacao,
+        temperatura: this.temperatura,
+      }
+
+      const dataJson = JSON.stringify(data)    
+      const req = await fetch("http://127.0.0.1:8000/sinaisvitais/", {
+        method: "POST",
+        headers: { "Content-Type" : "application/json" },
+        body: dataJson
+      });
+      const res = await req.json()
+      console.log(res)
+
     }
   }
 };
