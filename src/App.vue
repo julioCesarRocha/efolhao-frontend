@@ -2,7 +2,11 @@
   <v-app>
     <NavbarApp />
     <v-spacer></v-spacer>
-    <SinaisVitais />
+    <!-- <PacientesComponent /> -->
+    <!-- <SinaisVitais />
+    <HemodinamicaApp />
+    <RespiracaoComponent /> -->
+    <LoginComponent />
     <v-main>
     </v-main>
   </v-app>
@@ -10,13 +14,18 @@
 
 <script>
 import NavbarApp from "./components/Navbar.vue";
-import SinaisVitais from "./components/SinaisVitais.vue";
+// import PacientesComponent from "./components/PacientesComponent.vue";
+// import SinaisVitais from "./components/SinaisVitais.vue";
+// import HemodinamicaApp from "./components/Hemodinamica.vue";
+// import RespiracaoComponent from "./components/Respiracao.vue";
+import LoginComponent from "./components/LoginComponent.vue";
 
 export default {
   components: {
     NavbarApp,
-    SinaisVitais,
-  },
+    // PacientesComponent
+    LoginComponent
+},
 
 };
 </script>

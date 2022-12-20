@@ -6,7 +6,7 @@
           <v-col cols="12" md="4">
             <v-text-field
               v-model="frequencia_respiratoria"
-              label="FR (rpm)"
+              label="Frequência Respiratória (FR (rpm))"
               required
               
             >
@@ -15,7 +15,7 @@
           <v-col cols="12" md="4">
             <v-text-field
               v-model="pa_sistolica"
-              label="PAs"
+              label="Pressão Arterial Sistólica (PAs)"
               required
              
             >
@@ -24,9 +24,8 @@
           <v-col cols="12" md="4">
             <v-text-field
               v-model="pa_diastolica"
-              label="PAd"
+              label="Pressão Arterial Diastólica (PAd)"
               required
-              
             >
             </v-text-field>
           </v-col>
@@ -36,7 +35,7 @@
           <v-col cols="12" md="4">
             <v-text-field
               v-model="pa_media"
-              label="PAm"
+              label="Pressão Arterial Média (PAm)"
               required
               
             >
@@ -45,7 +44,7 @@
           <v-col cols="12" md="4">
             <v-text-field
               v-model="saturacao"
-              label="spO2"
+              label="Saturação (spO2)"
               required
          
             >
@@ -54,7 +53,7 @@
           <v-col cols="12" md="4">
             <v-text-field
               v-model="frequencia_cardiaca"
-              label="FC"
+              label="Frequência Cardíaca (FC)"
               required
             
             >
@@ -90,7 +89,7 @@
       <div id="div-botoes" align="right">
         <v-btn color="success" class="mr-4" @click="salvar">Salvar</v-btn>
 
-        <v-btn color="error" class="mr-4" > Cancelar </v-btn>
+        <v-btn color="error" class="mr-4"> Cancelar </v-btn>
       </div>
     </v-form>
   </v-app>

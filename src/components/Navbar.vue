@@ -2,10 +2,18 @@
   <div>
     <v-app-bar color="blue lighten-1" dense dark height="80px"> 
       <v-row align="center" justify="space-around">
-        <v-btn text>Sinais Vitais</v-btn>
-        <v-btn text>Hemodinâmica</v-btn>
-        <v-btn text>Respiração</v-btn>
-        <v-btn text>Neurológico</v-btn>
+        <!-- <router-link to="/">
+          <v-btn text>Sinais Vitais</v-btn>
+        </router-link>
+        <router-link to="/hemodinamica">
+          <v-btn text>Hemodinâmica</v-btn>
+        </router-link>
+        <router-link to="/">
+          <v-btn text>Respiração</v-btn>
+        </router-link>
+        <router-link to="/">
+          <v-btn text>Neurológico</v-btn>
+        </router-link> -->
       </v-row>
     </v-app-bar>
    

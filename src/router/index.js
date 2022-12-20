@@ -7,11 +7,11 @@ const routes = [
     name: 'Home',
     component: Home
   },
-  // {
-  //   path: '/cadastro',
-  //   name: 'Cadastro',
-  //   component: () => import(/* webpackChunkName: "cadastro" */ '../views/Cadastro.vue')
-  // }
+  {
+    path: '/hemodinamica',
+    name: 'Hemodinamica',
+    component: () => import(/* webpackChunkName: "hemodinamica" */ '../views/HemodinamicaApp.vue')
+  }
 ]
 
 const router = createRouter({
