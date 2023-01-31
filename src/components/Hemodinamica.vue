@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-form>
+    <v-form id="form-hemodinamica">
       <v-container fluid>
         <v-row>
           <v-col cols="12" md="4">
@@ -17,38 +17,73 @@
               v-model="pap"
               label="Pressão da Artéria Pulmonar (PAP)"
               required
-             
             >
             </v-text-field>
           </v-col>
           <v-col cols="12" md="4">
             <v-text-field
               v-model="poap"
-              label="POAP"
+              label="Pressão de Oclusão da Artéria Pulmonar (POAP)"
               required
               
             >
             </v-text-field>
           </v-col>
         </v-row>
-
         <v-row>
-          <v-col cols="12" md="4">
+          <!-- <v-col cols="12" md="4">
             <v-text-field
-              v-model="ic"
-              label="Índice Cardíaco (IC)"
+              v-model="poap"
+              label="Pressão Capilar Pulmonar (PCP)"
               required
+              
             >
             </v-text-field>
-          </v-col>
+          </v-col> -->
+
+          <!-- <v-col cols="12" md="4">
+            <v-text-field
+              v-model="sv02"
+              label="Saturação Arterial de Oxigênio (SAO2)"
+              required
+            ></v-text-field>
+          </v-col> -->
           <v-col cols="12" md="4">
             <v-text-field
               v-model="sv02"
-              label="svO2"
+              label="Saturação Venosa de Oxigênio (SVO2)"
               required
          
             >
             </v-text-field>
+          </v-col>
+
+        </v-row>
+
+        <v-row>
+          <v-col cols="12" md="4">
+            <v-subheader>Índice Cardíaco (IC)</v-subheader>
+            <v-slider
+              v-model="ic"
+              step="0.5"
+              thumb-label
+              ticks
+              min="0"
+              max="20"
+            >
+            </v-slider>
+          </v-col>
+          <v-col cols="12" md="4">
+            <v-subheader>Débito Cardíaco (DC)</v-subheader>
+            <v-slider
+              v-model="debito_cardiaco"
+              step="0.5"
+              thumb-label
+              ticks
+              min="0"
+              max="30"
+            >
+            </v-slider>
           </v-col>
         </v-row>
       </v-container>
@@ -74,6 +109,7 @@ export default {
         poap: this.poap,
         ic: this.ic,
         sv02: this.sv02,
+        debito_cardiaco: this.debito_cardiaco,
     };
   },
   methods:{
@@ -103,6 +139,7 @@ export default {
         poap: this.poap,
         ic: this.ic,
         sv02: this.sv02,
+        debito_cardiaco: this.debito_cardiaco,
       }
 
       const dataJson = JSON.stringify(data)    
@@ -111,6 +148,12 @@ export default {
         headers: { "Content-Type" : "application/json" },
         body: dataJson
       });
+
+      if (req.status === 201) {
+        alert("Dados cadastrados com sucesso!")
+      } else {
+        alert("Erro ao realizar cadastro!")
+      }
       const res = await req.json()
       console.log(res)
 

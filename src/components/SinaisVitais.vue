@@ -6,7 +6,7 @@
           <v-col cols="12" md="4">
             <v-text-field
               v-model="frequencia_respiratoria"
-              label="Frequência Respiratória (FR (rpm))"
+              label="Frequência Respiratória (FR (ipm))"
               required
               
             >
@@ -44,7 +44,7 @@
           <v-col cols="12" md="4">
             <v-text-field
               v-model="saturacao"
-              label="Saturação (spO2)"
+              label="Saturação de Pulso de Oxigênio (SPO2)"
               required
          
             >
@@ -61,16 +61,6 @@
           </v-col>
         </v-row>
         <v-row>
-          <!-- <v-col cols="12" md="4">
-            <v-text-field
-              v-model="glicemia"
-              label="Glicemia"
-              required
-              @input="$v.fr.$touch()"
-              @blur="$v.fr.$touch()"
-            >
-            </v-text-field>
-          </v-col> -->
           <v-col cols="12" md="4">
             <v-subheader>Temperatura</v-subheader>
             <v-slider
@@ -79,7 +69,7 @@
               thumb-label
               ticks
               min="30"
-              max="45"
+              max="60"
             >
             </v-slider>
           </v-col>

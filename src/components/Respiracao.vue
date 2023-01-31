@@ -1,5 +1,4 @@
 <template>
-  <v-app>
     <v-form>
       <v-container fluid>
         <v-row>
@@ -16,10 +15,14 @@
 
         <v-row>
           <v-col cols="12" md="4">
-            <v-text-field v-model="peep" label="PEEP" required> </v-text-field>
+            <v-text-field v-model="peep" label="Pressão Expiratória Final Positiva (PEEP)" required> </v-text-field>
           </v-col>
           <v-col cols="12" md="4">
-            <v-text-field v-model="p_pico" label="Ppico" required>
+            <v-text-field v-model="p_pico" label="Pressão de Pico" required>
+            </v-text-field>
+          </v-col>
+          <v-col cols="12" md="4">
+            <v-text-field v-model="volume_corrente" label="Volume Corrente" required>
             </v-text-field>
           </v-col>
         </v-row>
@@ -31,14 +34,13 @@
         <v-btn color="error" class="mr-4"> Cancelar </v-btn>
       </div>
     </v-form>
-  </v-app>
 </template>
 
 <script>
 import Hemodinamica from "../services/hemodinamica";
 
 export default {
-  name: "HemodinamicaApp",
+  name: "RespiracaoApp",
   data() {
     return {
       pressao_venosa_central: this.pressao_venosa_central,
@@ -47,7 +49,7 @@ export default {
       ic: this.ic,
       sv02: this.sv02,
 
-      listaModoEsp: ["Ambiente", "Cateter Nasal", "Máscara", "Não-Invasiva"],
+      listaModoEsp: ["Ambiente", "Cateter Nasal", "Máscara de Venturi", "Ventilação Não-Invasiva", "VM Em Modo Espontâneo/CPAP"],
       listaModoVm: ["CPAP", "PCV", "VCV"],
       listaFi02: ["24%", "28%", "32%", "36%"]
     };
