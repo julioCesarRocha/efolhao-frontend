@@ -4,7 +4,7 @@
     <v-spacer></v-spacer>
     <!-- <PacientesComponent /> -->
      <!-- <SinaisVitais /> -->
-     <MenuComponent />
+     
      <UsuarioComponent />
     <!-- <HemodinamicaApp /> -->
     <!-- <RespiracaoComponent /> -->
@@ -21,13 +21,11 @@ import NavbarApp from "./components/Navbar.vue";
 // import RespiracaoComponent from "./components/Respiracao.vue";
 // import LoginComponent from "./components/LoginComponent.vue";
 import UsuarioComponent from "./components/UsuarioComponent.vue";
-import MenuComponent from "./components/MenuComponent.vue";
 
 export default {
   components: {
     NavbarApp,
     UsuarioComponent,
-    MenuComponent,
     // SinaisVitais,
     // HemodinamicaApp
     // RespiracaoComponent
