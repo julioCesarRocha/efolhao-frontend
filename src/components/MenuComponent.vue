@@ -28,8 +28,9 @@
   </template>
   
 <script>
-
+  import router from '@/router';
   export default {
+    router,
     methods: {
       redirectToForm1() {
         this.$router.push({ name: "SinaisVitais" });

@@ -2,6 +2,21 @@
   <v-app>
     <v-form>
       <v-container fluid>
+        <div>
+        <!-- Alerta de registro salvo com sucesso -->
+          <v-alert
+            :value="showSuccessAlert"
+            type="success"
+            dismissible
+            @input="showSuccessAlert = false"
+          >
+            Dados cadastros com sucesso!
+          </v-alert>
+          <v-card-title class="title">
+            <h3>Sinais Vitais</h3>
+          </v-card-title>
+          
+        </div>
         <v-row>
           <v-col cols="12" md="4">
             <v-text-field
@@ -92,6 +107,7 @@ export default {
   name: "SinaisVitais",
   data() {
     return {
+        showSuccessAlert: false,
         frequencia_respiratoria: this.frequencia_respiratoria,
         pa_sistolica: this.pa_sistolica,
         pa_diastolica: this.pa_diastolica,
@@ -105,24 +121,12 @@ export default {
   methods:{
 
   mounted() {
-    Sinais.listar().then((resposta) => {
-      console.log(resposta.data);
-      this.sinaisvitais = resposta.data;
-    });
-    
+  
   },
-
-    // async salvar() {
-    //   Sinais.salvar(this.sinalVital).then(response => {
-    //     this.produto = {}
-    //     alert(response.data)
-    //   })
-    // }
 
     async salvar() {
       // e.preventDefault();
 
-      console.log(this.sinalVital);
       const data = {
         frequencia_respiratoria: this.frequencia_respiratoria,
         pa_sistolica: this.pa_sistolica,
@@ -133,18 +137,28 @@ export default {
         temperatura: this.temperatura,
       }
 
-      const dataJson = JSON.stringify(data)    
-      const req = await fetch("http://127.0.0.1:8000/sinaisvitais/", {
-        method: "POST",
-        headers: { "Content-Type" : "application/json" },
-        body: dataJson
-      });
-      const res = await req.json()
-      console.log(res)
+      console.log(data);
+      const resposta = await Sinais.salvar(data);
+      console.log(resposta);
+      if (resposta.status === 201) {
+        this.showSuccessAlert = true;
+        limparFormulario();
+      }
 
     }
   }
 };
+
+function limparFormulario()
+    {
+        this.frequencia_respiratoria = "";
+        this.pa_sistolica = "";
+        this.pa_diastolica = "";
+        this.pa_media = "";
+        this.saturacao = "";
+        this.frequencia_cardiaca = "";
+        this.temperatura = "";
+    }
 </script>
 
 <style scoped>
@@ -167,4 +181,10 @@ export default {
   margin-right: 25px;
   /* display: flex;
   justify-content: space-between; */
+}
+
+.title {
+  justify-content: center;
+  text-align: center;
+  color: #42A5F5;
 }

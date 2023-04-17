@@ -54,6 +54,7 @@
 <script>
 
 export default {
+  name: 'LoginComponent',
         data () {
           return {
             valid: false,

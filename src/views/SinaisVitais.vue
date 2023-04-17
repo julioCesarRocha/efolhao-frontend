@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import NavbarApp from "./components/Navbar.vue";
-import SinaisVitais from "./components/SinaisVitais.vue";
+import NavbarApp from "../components/Navbar.vue";
+import SinaisVitais from "../components/SinaisVitais.vue";
 
 export default {
     components: {
@@ -19,3 +19,11 @@ export default {
     },
 };
 </script>
+
+<style>
+.title {
+  justify-content: center;
+  text-align: center;
+  color: #42A5F5;
+}
+</style>

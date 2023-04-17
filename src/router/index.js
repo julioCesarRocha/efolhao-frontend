@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import SinaisVitais from '../components/SinaisVitais.vue'
+import SinaisVitais from '@/views/SinaisVitais.vue'
 // import Respiracao from './components/Respiracao.vue'
 // import Hemodinamica from './components/Hemodinamica.vue'
 // import Form4 from './components/Form4.vue'
@@ -28,7 +28,7 @@ const routes = [
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes
+  routes,
 })
 
 export default router

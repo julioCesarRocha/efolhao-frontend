@@ -2,6 +2,9 @@
   <v-app>
     <v-form id="form-hemodinamica">
       <v-container fluid>
+        <v-card-title class="title" >
+            <h3>Dados Hemodinâmicos</h3>
+          </v-card-title>
         <v-row>
           <v-col cols="12" md="4">
             <v-text-field
@@ -182,4 +185,10 @@ export default {
   margin-right: 25px;
   /* display: flex;
   justify-content: space-between; */
+}
+
+.title {
+  justify-content: center;
+  text-align: center;
+  color: #42A5F5;
 }

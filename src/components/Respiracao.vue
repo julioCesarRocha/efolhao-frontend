@@ -1,6 +1,20 @@
 <template>
-    <v-form>
+    <v-form id="form-respiracao">
       <v-container fluid>
+        <div>
+        <!-- Alerta de registro salvo com sucesso -->
+          <v-alert
+            :value="showSuccessAlert"
+            type="success"
+            dismissible
+            @input="showSuccessAlert = false"
+          >
+            Cadastro relizado com sucesso!
+          </v-alert>
+          <v-card-title class="title" >
+            <h3>Dados Respiratórios</h3>
+          </v-card-title>
+        </div>
         <v-row>
           <v-col cols="12" md="4">
             <v-select v-model="modo_esp" label="Modo Esp" :items="listaModoEsp" required> </v-select>
@@ -9,7 +23,7 @@
             <v-select v-model="modo_vm" label="Modo VM" :items="listaModoVm" required> </v-select>
           </v-col>
           <v-col cols="12" md="4">
-            <v-select v-model="fi02" label="Fi02" :items="listaFi02" required> </v-select>
+            <v-select v-model="fi02" label="Fi02 (%)" :items="listaFi02" required> </v-select>
           </v-col>
         </v-row>
 
@@ -37,56 +51,53 @@
 </template>
 
 <script>
-import Hemodinamica from "../services/hemodinamica";
+import Respiracao from "../services/respiracao";
 
 export default {
-  name: "RespiracaoApp",
+  name: "RespiracaoComponent",
   data() {
     return {
-      pressao_venosa_central: this.pressao_venosa_central,
-      pap: this.pap,
-      poap: this.poap,
-      ic: this.ic,
-      sv02: this.sv02,
+        showSuccessAlert: false,
+
+        modo_esp: this.modo_esp,
+        modo_vm: this.modo_vm,
+        fi02: this.fi02,
+        peep: this.peep,
+        p_pico: this.p_pico,
+        volume_corrente: this.volume_corrente,
 
       listaModoEsp: ["Ambiente", "Cateter Nasal", "Máscara de Venturi", "Ventilação Não-Invasiva", "VM Em Modo Espontâneo/CPAP"],
       listaModoVm: ["CPAP", "PCV", "VCV"],
-      listaFi02: ["24%", "28%", "32%", "36%"]
+      listaFi02: [24, 28, 32, 36]
     };
   },
 
   methods: {
     mounted() {
-      Hemodinamica.listar().then((resposta) => {
-        console.log(resposta.data);
-        this.hemodinamica = resposta.data;
-      });
+     
     },
-
-    // async salvar() {
-    //   Sinais.salvar(this.sinalVital).then(response => {
-    //     this.produto = {}
-    //     alert(response.data)
-    //   })
-    // }
 
     async salvar() {
       const data = {
-        pressao_venosa_central: this.pressao_venosa_central,
-        pap: this.pap,
-        poap: this.poap,
-        ic: this.ic,
-        sv02: this.sv02,
+        modo_esp: this.modo_esp,
+        modo_vm: this.modo_vm,
+        fi02: this.fi02,
+        peep: this.peep,
+        p_pico: this.p_pico,
+        volume_corrente: this.volume_corrente,
       };
 
-      const dataJson = JSON.stringify(data);
-      const req = await fetch("http://127.0.0.1:8000/hemodinamica/", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: dataJson,
-      });
-      const res = await req.json();
-      console.log(res);
+      const resposta = await Respiracao.inserirDadosRespiratorios(data);
+      const form = document.getElementById("form-respiracao");
+      const elementosSelecionados = form.getElementsByTagName("select");
+      
+      if (resposta.status === 201) {
+        this.showSuccessAlert = true;
+        form.reset();
+        for (let i = 0; i < elementosSelecionados.length; i++) {
+          elementosSelecionados[i].selectedIndex = 0;
+        }
+      }
     },
   },
 };
@@ -112,4 +123,10 @@ export default {
   margin-right: 25px;
   /* display: flex;
   justify-content: space-between; */
+}
+
+.title {
+  justify-content: center;
+  text-align: center;
+  color: #42A5F5;
 }

@@ -8,7 +8,7 @@ const instance = axios.create({
   });
   
   export default {
-    getUsuarios: () => {
+    getPacientes: () => {
       return instance.get("usuario");
     },
     getUsuario: (id) => {
