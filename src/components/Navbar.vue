@@ -15,6 +15,7 @@ export default {
    #navbar-banner {
     width: 100%;
     height: 200px; /* por exemplo, altura desejada para a navbar */
+    object-fit: cover;
   }
 
 </style>

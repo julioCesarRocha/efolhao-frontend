@@ -27,36 +27,53 @@
     <v-card-title class="title">
       <h3>Dashboard</h3>
     </v-card-title>
-    <div class="dashboard">
-      <img
-        :src="require('@/assets/img-dashboard.png')"
-        alt="Banner"
-        id="navbar-banner"
-      />
-    </div>
+    <LineChart v-if="dadosCarregados" :registro="registro" />
   </v-app>
 </template>
-  
+
 <script>
-import router from "@/router";
+import LineChart from '@/components/DashBoard.vue';
+import Sinais from "../services/sinaisvitais";
+
 export default {
-  router,
+  components: {
+    LineChart
+  },
+  data() {
+    return {
+      registro: [],
+      dadosCarregados: false,
+    };
+  },
+  mounted() {
+    const id = 'c48faba9-abbf-4d76-a5ee-e7e1086d6dd0';
+  Sinais.listarById(id)
+    .then(response => {
+      console.log(response);
+      this.registro = response.data;
+      this.dadosCarregados = true;
+    })
+    .catch(error => {
+      console.error(error);
+    });
+  },
   methods: {
     redirectToForm1() {
-      this.$router.push({ name: "SinaisVitais" });
+      this.$router.push({ name: 'SinaisVitais' });
     },
     redirectToForm2() {
-      this.$router.push({ name: "Hemodinamica" });
+      this.$router.push({ name: 'Hemodinamica' });
     },
     redirectToForm3() {
-      this.$router.push({ name: "Respiracao" });
+      this.$router.push({ name: 'Respiracao' });
     },
     redirectToForm4() {
-      this.$router.push({ name: "Neurologico" });
+      this.$router.push({ name: 'Neurologico' });
     },
   },
 };
 </script>
+
 <style scoped>
 .v-card {
   display: flex;
