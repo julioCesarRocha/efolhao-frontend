@@ -1,6 +1,6 @@
 <template>
     <v-app>
-        <NavbarApp />
+        <!-- <NavbarApp /> -->
         <v-spacer></v-spacer>
         <SinaisVitais />
         <v-main>
@@ -9,12 +9,12 @@
 </template>
 
 <script>
-import NavbarApp from "../components/Navbar.vue";
+// import NavbarApp from "../components/Navbar.vue";
 import SinaisVitais from "../components/SinaisVitais.vue";
 
 export default {
     components: {
-        NavbarApp,
+        // NavbarApp,
         SinaisVitais,
     },
 };

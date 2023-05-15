@@ -1,13 +1,6 @@
 <template>
   <div>
-    <v-app-bar color="blue lighten-1" dense dark height="80px"> 
-      <v-row align="center" justify="space-around">
-        <!-- <router-link id="logo-url" to="/">
-          <img id="logo" :src="logo" :alt="alt">
-        </router-link> -->
-      </v-row>
-    </v-app-bar>
-    
+    <img :src="require('@/assets/banner.png')" alt="Minha imagem" id="navbar-banner">
   </div>
 </template>
 
@@ -19,5 +12,9 @@ export default {
 </script>
 
 <style scoped>
+   #navbar-banner {
+    width: 100%;
+    height: 200px; /* por exemplo, altura desejada para a navbar */
+  }
 
 </style>

@@ -3,7 +3,6 @@
     <v-form>
       <v-container fluid>
         <div>
-        <!-- Alerta de registro salvo com sucesso -->
           <v-alert
             :value="showSuccessAlert"
             type="success"
@@ -17,25 +16,26 @@
           </v-card-title>
         </div>
         <v-row>
-          <v-col cols="12" md="4">
+          <v-col cols="12" md="6">
             <v-text-field v-model="glasgow" label="Glasgow" required> </v-text-field>
           </v-col>
-          <v-col cols="12" md="4">
+          <v-col cols="12" md="6">
             <v-select v-model="pupilas" label="Pupilas" :items="listaPupilas" required> </v-select>
           </v-col>
-          <v-col cols="12" md="4">
+        </v-row>
+        <v-row>
+          <v-col cols="12" md="6">
             <v-text-field v-model="sas" label="SAS" required/> 
           </v-col>
-        </v-row>
-
-        <v-row>
-          <v-col cols="12" md="2">
+          <v-col cols="12" md="6">
             <v-text-field v-model="dor" label="Dor" required />        
           </v-col>
-          <v-col cols="12" md="2">
+        </v-row>
+        <v-row>
+          <v-col cols="12" md="6">
             <v-text-field v-model="pic" label="PIC" required />        
           </v-col>
-          <v-col cols="12" md="2">
+          <v-col cols="12" md="6">
             <v-text-field v-model="sj02" label="SjO2" required />        
           </v-col>
         </v-row>
@@ -88,6 +88,7 @@ export default {
       const resposta = await Neurologico.inserirDadosNeurologicos(data);
       if (resposta.status === 201) {
         this.showSuccessAlert = true;
+        this.$router.push("/menu");
       }
     },
   },

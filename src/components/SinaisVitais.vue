@@ -18,7 +18,7 @@
           
         </div>
         <v-row>
-          <v-col cols="12" md="4">
+          <v-col cols="12" md="6">
             <v-text-field
               v-model="frequencia_respiratoria"
               label="Frequência Respiratória (FR (ipm))"
@@ -27,7 +27,7 @@
             >
             </v-text-field>
           </v-col>
-          <v-col cols="12" md="4">
+          <v-col cols="12" md="6">
             <v-text-field
               v-model="pa_sistolica"
               label="Pressão Arterial Sistólica (PAs)"
@@ -36,7 +36,9 @@
             >
             </v-text-field>
           </v-col>
-          <v-col cols="12" md="4">
+        </v-row>
+        <v-row>
+          <v-col cols="12" md="6">
             <v-text-field
               v-model="pa_diastolica"
               label="Pressão Arterial Diastólica (PAd)"
@@ -44,19 +46,18 @@
             >
             </v-text-field>
           </v-col>
-        </v-row>
-
-        <v-row>
-          <v-col cols="12" md="4">
+          <v-col cols="12" md="6">
             <v-text-field
               v-model="pa_media"
               label="Pressão Arterial Média (PAm)"
               required
-              
+              disabled
             >
             </v-text-field>
           </v-col>
-          <v-col cols="12" md="4">
+        </v-row>
+        <v-row>
+          <v-col cols="12" md="6">
             <v-text-field
               v-model="saturacao"
               label="Saturação de Pulso de Oxigênio (SPO2)"
@@ -65,7 +66,7 @@
             >
             </v-text-field>
           </v-col>
-          <v-col cols="12" md="4">
+          <v-col cols="12" md="6">
             <v-text-field
               v-model="frequencia_cardiaca"
               label="Frequência Cardíaca (FC)"
@@ -76,7 +77,7 @@
           </v-col>
         </v-row>
         <v-row>
-          <v-col cols="12" md="4">
+          <v-col cols="12" md="6">
             <v-subheader>Temperatura</v-subheader>
             <v-slider
               v-model="temperatura"
@@ -107,26 +108,29 @@ export default {
   name: "SinaisVitais",
   data() {
     return {
-        showSuccessAlert: false,
-        frequencia_respiratoria: this.frequencia_respiratoria,
-        pa_sistolica: this.pa_sistolica,
-        pa_diastolica: this.pa_diastolica,
-        pa_media: this.pa_media,
-        saturacao: this.saturacao,
-        frequencia_cardiaca: this.saturacao,
-        temperatura: this.temperatura,
-      // sinaisvitais: [],
+      showSuccessAlert: false,
+      frequencia_respiratoria: "",
+      pa_sistolica: "",
+      pa_diastolica: "",
+      pa_media: "",
+      saturacao: "",
+      frequencia_cardiaca: "",
+      temperatura: "",
     };
   },
-  methods:{
-
-  mounted() {
-  
-  },
-
+  methods: {
+    calcularPaMedia() {
+      const ps = Number(this.pa_sistolica).toFixed(2);
+      const pd = Number(this.pa_diastolica).toFixed(2);
+        if (!isNaN(ps) && !isNaN(pd)) {
+          // const pm = ps + (pd * 2) / 3;
+          const pm = ((Math.pow(pd, 2)) + ps)/3;
+          this.pa_media = pm.toFixed(2);
+        } else {
+          this.pa_media = "";
+        }
+    },
     async salvar() {
-      // e.preventDefault();
-
       const data = {
         frequencia_respiratoria: this.frequencia_respiratoria,
         pa_sistolica: this.pa_sistolica,
@@ -135,30 +139,36 @@ export default {
         saturacao: this.saturacao,
         frequencia_cardiaca: this.saturacao,
         temperatura: this.temperatura,
-      }
+      };
 
       console.log(data);
       const resposta = await Sinais.salvar(data);
       console.log(resposta);
       if (resposta.status === 201) {
         this.showSuccessAlert = true;
-        limparFormulario();
+        this.limparFormulario();
+        this.$router.push("/menu");
       }
-
-    }
-  }
+    },
+    limparFormulario() {
+      this.frequencia_respiratoria = "";
+      this.pa_sistolica = "";
+      this.pa_diastolica = "";
+      this.pa_media = "";
+      this.saturacao = "";
+      this.frequencia_cardiaca = "";
+      this.temperatura = "";
+    },
+  },
+  watch: {
+    pa_sistolica: function () {
+      this.calcularPaMedia();
+    },
+    pa_diastolica: function () {
+      this.calcularPaMedia();
+    },
+  },
 };
-
-function limparFormulario()
-    {
-        this.frequencia_respiratoria = "";
-        this.pa_sistolica = "";
-        this.pa_diastolica = "";
-        this.pa_media = "";
-        this.saturacao = "";
-        this.frequencia_cardiaca = "";
-        this.temperatura = "";
-    }
 </script>
 
 <style scoped>

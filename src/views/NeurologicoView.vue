@@ -1,8 +1,7 @@
 <template>
     <v-app>
         <!-- <NavbarApp /> -->
-        <v-spacer></v-spacer>
-        <HemodinamicaApp />
+        <Neurologico />
         <v-main>
         </v-main>
     </v-app>
@@ -10,12 +9,12 @@
 
 <script>
 // import NavbarApp from "../components/Navbar.vue";
-import HemodinamicaApp from "../components/Hemodinamica.vue";
+import Neurologico from "../components/NeurologicoComponent.vue";
 
 export default {
     components: {
         // NavbarApp,
-        HemodinamicaApp,
+        Neurologico,
     },
 };
 </script>

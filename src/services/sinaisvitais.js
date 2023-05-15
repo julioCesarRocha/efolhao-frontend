@@ -10,6 +10,9 @@ export default {
     listar: () => {
         return instance.get('sinaisvitais')
     },
+    listarById: (id) => {
+        return instance.get(`sinaisvitais/${id}`)
+    },
     salvar:(sinalVital) => {
         return instance.post('sinaisvitais/', sinalVital)
     }

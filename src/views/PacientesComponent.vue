@@ -1,8 +1,7 @@
 <template>
     <v-app>
         <!-- <NavbarApp /> -->
-        <v-spacer></v-spacer>
-        <HemodinamicaApp />
+        <Pacientes />
         <v-main>
         </v-main>
     </v-app>
@@ -10,12 +9,20 @@
 
 <script>
 // import NavbarApp from "../components/Navbar.vue";
-import HemodinamicaApp from "../components/Hemodinamica.vue";
+import Pacientes from "../components/PacientesComponent.vue";
 
 export default {
     components: {
         // NavbarApp,
-        HemodinamicaApp,
+        Pacientes,
     },
 };
 </script>
+
+<style>
+.title {
+  justify-content: center;
+  text-align: center;
+  color: #42A5F5;
+}
+</style>

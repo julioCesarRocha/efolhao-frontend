@@ -6,7 +6,7 @@
             <h3>Dados Hemodinâmicos</h3>
           </v-card-title>
         <v-row>
-          <v-col cols="12" md="4">
+          <v-col cols="12" md="6">
             <v-text-field
               v-model="pressao_venosa_central"
               label="Pressão Venosa Central (PVC)"
@@ -15,7 +15,7 @@
             >
             </v-text-field>
           </v-col>
-          <v-col cols="12" md="4">
+          <v-col cols="12" md="6">
             <v-text-field
               v-model="pap"
               label="Pressão da Artéria Pulmonar (PAP)"
@@ -23,7 +23,9 @@
             >
             </v-text-field>
           </v-col>
-          <v-col cols="12" md="4">
+        </v-row>
+        <v-row>
+          <v-col cols="12" md="6">
             <v-text-field
               v-model="poap"
               label="Pressão de Oclusão da Artéria Pulmonar (POAP)"
@@ -32,8 +34,6 @@
             >
             </v-text-field>
           </v-col>
-        </v-row>
-        <v-row>
           <!-- <v-col cols="12" md="4">
             <v-text-field
               v-model="poap"
@@ -51,7 +51,7 @@
               required
             ></v-text-field>
           </v-col> -->
-          <v-col cols="12" md="4">
+          <v-col cols="12" md="6">
             <v-text-field
               v-model="sv02"
               label="Saturação Venosa de Oxigênio (SVO2)"
@@ -60,12 +60,11 @@
             >
             </v-text-field>
           </v-col>
-
         </v-row>
 
         <v-row>
-          <v-col cols="12" md="4">
-            <v-subheader>Índice Cardíaco (IC)</v-subheader>
+          <v-col cols="12" md="6">
+            <v-subheader>Índice Cardíaco (IC - (L/min/m2))</v-subheader>
             <v-slider
               v-model="ic"
               step="0.5"
@@ -76,8 +75,8 @@
             >
             </v-slider>
           </v-col>
-          <v-col cols="12" md="4">
-            <v-subheader>Débito Cardíaco (DC)</v-subheader>
+          <v-col cols="12" md="6">
+            <v-subheader>Débito Cardíaco (DC - (L/min))</v-subheader>
             <v-slider
               v-model="debito_cardiaco"
               step="0.5"

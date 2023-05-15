@@ -2,7 +2,6 @@
     <v-form id="form-respiracao">
       <v-container fluid>
         <div>
-        <!-- Alerta de registro salvo com sucesso -->
           <v-alert
             :value="showSuccessAlert"
             type="success"
@@ -16,26 +15,27 @@
           </v-card-title>
         </div>
         <v-row>
-          <v-col cols="12" md="4">
+          <v-col cols="12" md="6">
             <v-select v-model="modo_esp" label="Modo Esp" :items="listaModoEsp" required> </v-select>
           </v-col>
-          <v-col cols="12" md="4">
+          <v-col cols="12" md="6">
             <v-select v-model="modo_vm" label="Modo VM" :items="listaModoVm" required> </v-select>
           </v-col>
-          <v-col cols="12" md="4">
+        </v-row>
+        <v-row>
+          <v-col cols="12" md="6">
             <v-select v-model="fi02" label="Fi02 (%)" :items="listaFi02" required> </v-select>
           </v-col>
-        </v-row>
-
-        <v-row>
-          <v-col cols="12" md="4">
+          <v-col cols="12" md="6">
             <v-text-field v-model="peep" label="Pressão Expiratória Final Positiva (PEEP)" required> </v-text-field>
           </v-col>
-          <v-col cols="12" md="4">
+        </v-row>
+        <v-row>
+          <v-col cols="12" md="6">
             <v-text-field v-model="p_pico" label="Pressão de Pico" required>
             </v-text-field>
           </v-col>
-          <v-col cols="12" md="4">
+          <v-col cols="12" md="6">
             <v-text-field v-model="volume_corrente" label="Volume Corrente" required>
             </v-text-field>
           </v-col>
@@ -94,6 +94,7 @@ export default {
       if (resposta.status === 201) {
         this.showSuccessAlert = true;
         form.reset();
+        this.$router.push("/menu");
         for (let i = 0; i < elementosSelecionados.length; i++) {
           elementosSelecionados[i].selectedIndex = 0;
         }
