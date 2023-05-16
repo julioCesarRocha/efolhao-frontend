@@ -1,9 +1,6 @@
 <template>
     <v-app>
-        <!-- <NavbarApp /> -->
         <MenuComponent />
-        <v-main>
-        </v-main>
     </v-app>
 </template>
 
@@ -22,9 +19,9 @@ export default {
 </script>
 
 <style>
-    .title {
+    /* .title {
     justify-content: center;
     text-align: center;
     color: #42A5F5;
-    }
+    } */
 </style>

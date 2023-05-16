@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-container>
-      <v-row>
+      <!-- <v-row> -->
         <v-col cols="12" md="3">
           <v-card @click="redirectToForm1">
             <v-card-title>Sinais Vitais</v-card-title>
@@ -22,12 +22,14 @@
             <v-card-title>Neurológico</v-card-title>
           </v-card>
         </v-col>
-      </v-row>
+      <!-- </v-row> -->
     </v-container>
     <v-card-title class="title">
       <h3>Dashboard</h3>
     </v-card-title>
-    <LineChart v-if="dadosCarregados" :registro="registro" />
+    <!-- <div > -->
+      <LineChart v-if="dadosCarregados" :registro="registro" class="dashboard-temperatura"/>
+    <!-- </div> -->
   </v-app>
 </template>
 
@@ -84,7 +86,7 @@ export default {
   width: 170px;
   background-color: #5faff0;
   color: white;
-  margin-top: -40px;
+  margin-top: -45px;
   border-radius: 10px;
   /* flex-wrap: wrap; */
 }
@@ -98,11 +100,11 @@ export default {
   font-size: 1rem;
 }
 
-.title {
+/* .title {
   justify-content: center;
   text-align: center;
   color: #42a5f5;
-}
+} */
 
 .dashboard {
   display: flex;
@@ -111,14 +113,27 @@ export default {
   margin-bottom: 20px;
 }
 
-@media screen and (max-width: 770px) {
-  .v-card {
-    display: block;
+.dashboard-temperatura {
+  width: 450px;
+  height: 250px;
+}
+
+@media screen and (max-width: 830px) {
+  .container {
+    display: flex;
     flex-direction: row;
+    justify-content: center;
     height: 90px;
-    width: 130px;
-    background-color: #5faff0;
+    width: 200px;
+    /* background-color: #5faff0; */
     color: white;
+  }
+
+  .dashboard-temperatura {
+  width: 800px;
+  height: 250px;
+  display: flex;
+  justify-content: center;
   }
 }
 </style>
