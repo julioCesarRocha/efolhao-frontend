@@ -3,22 +3,22 @@
     <v-container>
       <!-- <v-row> -->
         <v-col cols="12" md="3">
-          <v-card @click="redirectToForm1">
+          <v-card @click="redirectToSinaisVitais">
             <v-card-title>Sinais Vitais</v-card-title>
           </v-card>
         </v-col>
         <v-col cols="12" md="3">
-          <v-card @click="redirectToForm2">
+          <v-card @click="redirectToHemodinamica">
             <v-card-title>Hemodinâmica</v-card-title>
           </v-card>
         </v-col>
         <v-col cols="12" md="3">
-          <v-card @click="redirectToForm3">
+          <v-card @click="redirectToRespiracao">
             <v-card-title>Respiração</v-card-title>
           </v-card>
         </v-col>
         <v-col cols="12" md="3">
-          <v-card @click="redirectToForm4">
+          <v-card @click="redirectToNeurologico">
             <v-card-title>Neurológico</v-card-title>
           </v-card>
         </v-col>
@@ -48,10 +48,9 @@ export default {
     };
   },
   mounted() {
-    const id = 'c48faba9-abbf-4d76-a5ee-e7e1086d6dd0';
-  Sinais.listarById(id)
+
+  Sinais.listarById(this.$route.params.id)
     .then(response => {
-      console.log(response);
       this.registro = response.data;
       this.dadosCarregados = true;
     })
@@ -60,16 +59,16 @@ export default {
     });
   },
   methods: {
-    redirectToForm1() {
+    redirectToSinaisVitais() {
       this.$router.push({ name: 'SinaisVitais' });
     },
-    redirectToForm2() {
+    redirectToHemodinamica() {
       this.$router.push({ name: 'Hemodinamica' });
     },
-    redirectToForm3() {
+    redirectToRespiracao() {
       this.$router.push({ name: 'Respiracao' });
     },
-    redirectToForm4() {
+    redirectToNeurologico() {
       this.$router.push({ name: 'Neurologico' });
     },
   },
@@ -132,8 +131,22 @@ export default {
   .dashboard-temperatura {
   width: 800px;
   height: 250px;
-  display: flex;
-  justify-content: center;
+  /* display: flex; */
+  /* justify-content: center;
+  align-items: center; */
+  margin-left: 120px;
+  height: 250px;
+  }
+
+  .v-card {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+  }
+
+  .v-card__title {
+    font-size: 0.7rem;
   }
 }
 </style>
