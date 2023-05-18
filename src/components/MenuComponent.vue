@@ -1,31 +1,29 @@
 <template>
   <v-app>
     <v-container>
-      <!-- <v-row> -->
         <v-col cols="12" md="3">
-          <v-card @click="redirectToSinaisVitais">
+          <v-card @click="redirectToSinaisVitais()">
             <v-card-title>Sinais Vitais</v-card-title>
           </v-card>
         </v-col>
         <v-col cols="12" md="3">
-          <v-card @click="redirectToHemodinamica">
+          <v-card @click="redirectToHemodinamica()">
             <v-card-title>Hemodinâmica</v-card-title>
           </v-card>
         </v-col>
         <v-col cols="12" md="3">
-          <v-card @click="redirectToRespiracao">
+          <v-card @click="redirectToRespiracao()">
             <v-card-title>Respiração</v-card-title>
           </v-card>
         </v-col>
         <v-col cols="12" md="3">
-          <v-card @click="redirectToNeurologico">
+          <v-card @click="redirectToNeurologico()">
             <v-card-title>Neurológico</v-card-title>
           </v-card>
         </v-col>
-      <!-- </v-row> -->
     </v-container>
     <v-card-title class="title">
-      <h3>Dashboard</h3>
+      <h2>Dashboard</h2>
     </v-card-title>
     <!-- <div > -->
       <LineChart v-if="dadosCarregados" :registro="registro" class="dashboard-temperatura"/>
@@ -60,16 +58,16 @@ export default {
   },
   methods: {
     redirectToSinaisVitais() {
-      this.$router.push({ name: 'SinaisVitais' });
+      this.$router.push({ name: 'SinaisVitais', params: { id: this.$route.params.id } });
     },
     redirectToHemodinamica() {
-      this.$router.push({ name: 'Hemodinamica' });
+      this.$router.push({ name: 'Hemodinamica', params: { id: this.$route.params.id } });
     },
     redirectToRespiracao() {
-      this.$router.push({ name: 'Respiracao' });
+      this.$router.push({ name: 'Respiracao', params: { id: this.$route.params.id } });
     },
     redirectToNeurologico() {
-      this.$router.push({ name: 'Neurologico' });
+      this.$router.push({ name: 'Neurologico', params: { id: this.$route.params.id } });
     },
   },
 };
@@ -77,18 +75,40 @@ export default {
 
 <style scoped>
 .v-card {
-  display: flex;
+  /* display: flex;
   justify-content: center;
-  align-items: space-between;
+  align-items: space-between; */
   /* flex-direction: row; */
-  height: 90px;
+  /* height: 90px;
   width: 170px;
   background-color: #5faff0;
   color: white;
   margin-top: -45px;
-  border-radius: 10px;
+  border-radius: 10px; */
   /* flex-wrap: wrap; */
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  /* height: 200px;
+  width: 600px; */
+  color: white;
+  background-color: #5faff0;;
+  height: 100px;
+  width: 200px;
+  border-radius: 10px; 
 }
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    /* height: 200px;
+    width: 500px; */
+    /* background-color: #5faff0;  */
+    color: #5faff0;
+    margin-top: -45px;
+    border-radius: 10px; 
+  }
 .v-card:hover {
   background-color: #3f8ed0;
 }
@@ -99,11 +119,11 @@ export default {
   font-size: 1rem;
 }
 
-/* .title {
+.title {
   justify-content: center;
   text-align: center;
   color: #42a5f5;
-} */
+}
 
 .dashboard {
   display: flex;
@@ -126,6 +146,7 @@ export default {
     width: 200px;
     /* background-color: #5faff0; */
     color: white;
+    /* margin: 0 auto; */
   }
 
   .dashboard-temperatura {
@@ -136,17 +157,25 @@ export default {
   align-items: center; */
   margin-left: 120px;
   height: 250px;
+  /* margin-top: 20px; */
   }
 
   .v-card {
     display:flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    width: 120px;
+    width: 125px;
+    margin: auto;
   }
 
   .v-card__title {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
+    
+  }
+
+  .title {
+    margin-top: 40px;
+    color: #5faff0;
   }
 }
 </style>

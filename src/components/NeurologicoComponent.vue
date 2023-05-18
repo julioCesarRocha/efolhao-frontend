@@ -83,6 +83,7 @@ export default {
         dor: this.dor,
         pic: this.pic,
         sj02: this.sj02,
+        id_usuario: this.$route.params.id,
       };
 
       const resposta = await Neurologico.inserirDadosNeurologicos(data);

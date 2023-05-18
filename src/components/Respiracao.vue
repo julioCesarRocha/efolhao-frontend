@@ -85,6 +85,7 @@ export default {
         peep: this.peep,
         p_pico: this.p_pico,
         volume_corrente: this.volume_corrente,
+        id_usuario: this.$route.params.id,
       };
 
       const resposta = await Respiracao.inserirDadosRespiratorios(data);

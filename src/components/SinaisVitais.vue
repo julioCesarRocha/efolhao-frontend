@@ -13,7 +13,7 @@
             Dados cadastros com sucesso!
           </v-alert>
           <v-card-title class="title">
-            <h3>Sinais Vitais</h3>
+            <h2>Sinais Vitais</h2>
           </v-card-title>
           
         </div>
@@ -139,11 +139,10 @@ export default {
         saturacao: this.saturacao,
         frequencia_cardiaca: this.saturacao,
         temperatura: this.temperatura,
+        id_usuario: this.$route.params.id,
       };
 
-      console.log(data);
       const resposta = await Sinais.salvar(data);
-      console.log(resposta);
       if (resposta.status === 201) {
         this.showSuccessAlert = true;
         this.limparFormulario();

@@ -1,6 +1,8 @@
 <template>
   <v-form>
-    <v-card-title> Pacientes </v-card-title>
+    <v-card-title> 
+      <h2>Pacientes</h2> 
+    </v-card-title>
     <v-card>
       <v-card-text>
         <v-list>
@@ -11,7 +13,7 @@
               <v-list-item-subtitle>{{
                 new Date(patient.data_nascimento).toLocaleDateString("pt-BR")}}
               </v-list-item-subtitle>
-              <v-divider :thickness="4"></v-divider>
+              <v-divider :thickness="7"></v-divider>
             </v-list-item-content>
             <!-- <v-btn color="success" class="ml-auto mr-2">Alta</v-btn> -->
           </v-list-item>

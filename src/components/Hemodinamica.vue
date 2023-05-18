@@ -124,17 +124,7 @@ export default {
     
   },
 
-    // async salvar() {
-    //   Sinais.salvar(this.sinalVital).then(response => {
-    //     this.produto = {}
-    //     alert(response.data)
-    //   })
-    // }
-
     async salvar() {
-      // e.preventDefault();
-
-      console.log(this.sinalVital);
       const data = {
         pressao_venosa_central: this.pressao_venosa_central,
         pap: this.pap,
@@ -142,6 +132,7 @@ export default {
         ic: this.ic,
         sv02: this.sv02,
         debito_cardiaco: this.debito_cardiaco,
+        id_usuario: this.$route.params.id,
       }
 
       const dataJson = JSON.stringify(data)    
