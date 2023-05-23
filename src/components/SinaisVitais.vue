@@ -120,8 +120,8 @@ export default {
   },
   methods: {
     calcularPaMedia() {
-      const ps = Number(this.pa_sistolica).toFixed(2);
-      const pd = Number(this.pa_diastolica).toFixed(2);
+      const ps = Number(this.pa_sistolica);
+      const pd = Number(this.pa_diastolica);
         if (!isNaN(ps) && !isNaN(pd)) {
           // const pm = ps + (pd * 2) / 3;
           const pm = ((Math.pow(pd, 2)) + ps)/3;

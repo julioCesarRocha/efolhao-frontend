@@ -46,7 +46,6 @@ export default {
     };
   },
   mounted() {
-
   Sinais.listarById(this.$route.params.id)
     .then(response => {
       this.registro = response.data;
@@ -152,7 +151,7 @@ export default {
   .dashboard-temperatura {
   width: 800px;
   height: 250px;
-  /* display: flex; */
+  display: flex;
   /* justify-content: center;
   align-items: center; */
   margin-left: 120px;
