@@ -144,8 +144,6 @@ export default {
 
       if (req.status === 201) {
         alert("Dados cadastrados com sucesso!")
-      } else {
-        alert("Erro ao realizar cadastro!")
       }
       const res = await req.json()
       console.log(res)

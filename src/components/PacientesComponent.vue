@@ -1,9 +1,10 @@
 <template>
-  <v-form>
+  <v-app>
     <v-card-title> 
       <h2>Pacientes</h2> 
+      <v-btn color="success" class="ml-auto mr-2" @click="cadastrarPaciente">Novo</v-btn>
     </v-card-title>
-    <v-card>
+    <!-- <v-card> -->
       <v-card-text>
         <v-list>
           <v-list-item v-for="patient in patients" :key="patient.id" @click="detalharPaciente(patient.id)">
@@ -19,8 +20,8 @@
           </v-list-item>
         </v-list>
       </v-card-text>
-    </v-card>
-  </v-form>
+    <!-- </v-card> -->
+  </v-app>
 </template>
 
 <script>
@@ -50,13 +51,15 @@ export default {
       try {
         const response = await Usuario.getPacientes();
         this.patients = response.data;
-        console.log(this.patients);
       } catch (error) {
         console.error(error);
       }
     },
     detalharPaciente(id) {
       this.$router.push({ name: "MenuComponent", params: { id: id } });
+    },
+    cadastrarPaciente() {
+      this.$router.push({ name: "UsuarioComponent" });
     },
   },
 };
@@ -73,9 +76,13 @@ export default {
 }
 
 .v-card__title {
-  justify-content: center;
-  text-align: center;
+  justify-content: left;
+  text-align: left;
   color: #42a5f5;
 
+}
+
+.v-list {
+  margin: 0 auto;
 }
 </style>

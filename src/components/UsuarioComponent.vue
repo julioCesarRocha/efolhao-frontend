@@ -82,10 +82,7 @@ export default {
 
   methods: {
     mounted() {
-    //   // Usuario.listar().then((resposta) => {
-    //   //   console.log(resposta.data);
-    //   //   this.hemodinamica = resposta.data;
-    //   // });
+   
     },
 
     async salvar() {
@@ -103,6 +100,11 @@ export default {
       const resposta = await Usuario.criarUsuario(data);
       if (resposta.status === 201) {
         this.showSuccessAlert = true;
+        if (this.showSuccessAlert == true) {
+          setTimeout(() => {
+            this.$router.push({ name: "Pacientes" });
+          }, 3000);
+        }
       }
     },
 

@@ -89,7 +89,11 @@ export default {
       const resposta = await Neurologico.inserirDadosNeurologicos(data);
       if (resposta.status === 201) {
         this.showSuccessAlert = true;
-        this.$router.push("/menu");
+        if (this.showSuccessAlert == true) {
+          setTimeout(() => {
+            this.$router.push({ name: "MenuComponent" });
+          }, 3000);
+        }
       }
     },
   },

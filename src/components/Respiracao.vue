@@ -94,10 +94,13 @@ export default {
       
       if (resposta.status === 201) {
         this.showSuccessAlert = true;
-        form.reset();
-        this.$router.push("/menu");
         for (let i = 0; i < elementosSelecionados.length; i++) {
           elementosSelecionados[i].selectedIndex = 0;
+        }
+        if (this.showSuccessAlert == true) {
+          setTimeout(() => {
+            this.$router.push({ name: "MenuComponent" });
+          }, 3000);
         }
       }
     },

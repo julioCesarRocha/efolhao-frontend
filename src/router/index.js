@@ -12,14 +12,8 @@ const routes = [
   {
     path: '/sinaisvitais',
     name: 'SinaisVitais',
-    // component: SinaisVitais
     component: () => import ('../views/SinaisVitais.vue')
   },
-  // {
-  //   path: '/respiracao',
-  //   name: 'Respiracao',
-  //   component: Respiracao
-  // },
   {
     path: '/respiracao',
     name: 'Respiracao',
@@ -44,6 +38,11 @@ const routes = [
     path: '/menu',
     name: 'MenuComponent',
     component: () => import ('../views/MenuComponent.vue')
+  },
+  {
+    path: '/cadastrar-paciente',
+    name: 'UsuarioComponent',
+    component: () => import ('../views/UsuarioView.vue')
   }
 ]
 

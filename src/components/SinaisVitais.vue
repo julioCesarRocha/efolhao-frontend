@@ -145,8 +145,11 @@ export default {
       const resposta = await Sinais.salvar(data);
       if (resposta.status === 201) {
         this.showSuccessAlert = true;
-        this.limparFormulario();
-        this.$router.push("/menu");
+        if (this.showSuccessAlert == true) {
+          setTimeout(() => {
+            this.$router.push({ name: "MenuComponent" });
+          }, 3000);
+        }
       }
     },
     limparFormulario() {
