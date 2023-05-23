@@ -2,9 +2,17 @@
   <v-app>
     <v-form id="form-hemodinamica">
       <v-container fluid>
-        <v-card-title class="title" >
-            <h3>Dados Hemodinâmicos</h3>
+        <div>
+          <v-alert
+            :value="showSuccessAlert"
+            type="success"
+            dismissible
+            @input="showSuccessAlert = false"> Dados cadastros com sucesso!
+          </v-alert>
+          <v-card-title class="title" >
+              <h3>Dados Hemodinâmicos</h3>
           </v-card-title>
+        </div>
         <v-row>
           <v-col cols="12" md="6">
             <v-text-field
@@ -106,6 +114,7 @@ export default {
   name: "HemodinamicaApp",
   data() {
     return {
+        showSuccessAlert: false,
         pressao_venosa_central: this.pressao_venosa_central,
         pap: this.pap,
         poap: this.poap,
@@ -135,19 +144,15 @@ export default {
         id_usuario: this.$route.params.id,
       }
 
-      const dataJson = JSON.stringify(data)    
-      const req = await fetch("http://127.0.0.1:8000/hemodinamica/", {
-        method: "POST",
-        headers: { "Content-Type" : "application/json" },
-        body: dataJson
-      });
-
-      if (req.status === 201) {
-        alert("Dados cadastrados com sucesso!")
+      const resposta = await Hemodinamica.salvar(data);
+      if (resposta.status === 201) {
+        this.showSuccessAlert = true;
+        if (this.showSuccessAlert == true) {
+          setTimeout(() => {
+            this.$router.push({ name: "MenuComponent" });
+          }, 3000);
+        }
       }
-      const res = await req.json()
-      console.log(res)
-
     }
   }
 };
