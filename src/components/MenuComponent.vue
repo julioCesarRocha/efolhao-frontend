@@ -22,18 +22,30 @@
           </v-card>
         </v-col>
     </v-container>
-    <v-card-title class="title">
-      <h2>Dashboard</h2>
-    </v-card-title>
-    <!-- <div > -->
+    <!-- <v-form> -->
+      <div>
+        <!-- <v-row align="start" class="dados-paciente">
+          <v-col cols="12" md="4">
+            <label><b>Paciente</b></label>
+            <v-text-field clearable v-model="nome" disabled></v-text-field>
+          </v-col>
+          <v-col cols="12" md="4">
+            <label><b>Data Internação</b></label>
+            <v-text-field clearable v-model="data_internacao" disabled></v-text-field>
+          </v-col>
+        </v-row> -->
+      </div>
+  <!-- </v-form> -->
+    <v-card-title class="title"><h2>Dashboard</h2></v-card-title>
+    <v-card-subtitle class="title">Temperatura</v-card-subtitle>
       <LineChart v-if="dadosCarregados" :registro="registro" class="dashboard-temperatura"/>
-    <!-- </div> -->
   </v-app>
 </template>
 
 <script>
 import LineChart from '@/components/DashBoard.vue';
 import Sinais from "../services/sinaisvitais";
+// import Usuario from "../services/usuario";
 
 export default {
   components: {
@@ -43,6 +55,8 @@ export default {
     return {
       registro: [],
       dadosCarregados: false,
+      nome: '',
+      data_internacao: '',
     };
   },
   mounted() {
@@ -50,10 +64,21 @@ export default {
     .then(response => {
       this.registro = response.data;
       this.dadosCarregados = true;
+      this.nome = this.$route.params.nome;
+      this.data_internacao = this.$route.params.data_internacao;
+
     })
     .catch(error => {
       console.error(error);
     });
+  // Usuario.getUsuario(this.$route.params.id)
+  //   .then(response => {
+  //     console.log('getUsuario ' +  response.data.map(item => item));
+  //     // this.nome = response.data.nome;
+  //   })
+  //   .catch(error => {
+  //     console.error(error);
+  //   });
   },
   methods: {
     redirectToSinaisVitais() {
@@ -136,6 +161,16 @@ export default {
   height: 250px;
 }
 
+.dados-paciente {
+  padding: 20px;
+  margin-top: 15px;
+  /* justify-content: flex-start;
+  margin-top: 35px;  */
+  /* display: flex;
+  justify-content: left;
+  align-items: left;*/
+}
+
 @media screen and (max-width: 830px) {
   .container {
     display: flex;
@@ -169,7 +204,6 @@ export default {
 
   .v-card__title {
     font-size: 0.8rem;
-    
   }
 
   .title {

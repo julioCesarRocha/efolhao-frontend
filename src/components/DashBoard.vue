@@ -12,7 +12,6 @@ import { format } from 'date-fns';
 export default {
   name: 'LineChart',
   mounted() {
-    console.log('item ' + this.registro.map(item => item));
     const data = this.registro.map(item => item.temperatura);
     const labels = this.registro.map(item => format(new Date(item.data_criacao), 'dd/MM/yyyy'));
     console.log(data, labels);

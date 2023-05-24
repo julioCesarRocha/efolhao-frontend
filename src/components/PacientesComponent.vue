@@ -7,7 +7,7 @@
     <!-- <v-card> -->
       <v-card-text>
         <v-list>
-          <v-list-item v-for="patient in patients" :key="patient.id" @click="detalharPaciente(patient.id)">
+          <v-list-item v-for="patient in patients" :key="patient.id" @click="detalharPaciente(patient.id, patient.nome, patient.data_criacao)">
             <input type="hidden" :value="patient.id" />
             <v-list-item-content>
               <v-list-item-title>{{ patient.nome }}</v-list-item-title>
@@ -55,8 +55,9 @@ export default {
         console.error(error);
       }
     },
-    detalharPaciente(id) {
-      this.$router.push({ name: "MenuComponent", params: { id: id } });
+    detalharPaciente(id, nome, dataInternacao) {
+      console.log(this.patients);
+      this.$router.push({ name: "MenuComponent", params: { id: id, nome: nome, dataInternacao: dataInternacao} });
     },
     cadastrarPaciente() {
       this.$router.push({ name: "UsuarioComponent" });
