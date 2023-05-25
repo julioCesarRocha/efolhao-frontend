@@ -1,30 +1,30 @@
 <template>
   <v-app>
     <v-container>
-        <v-col cols="12" md="3">
-          <v-card @click="redirectToSinaisVitais()">
-            <v-card-title>Sinais Vitais</v-card-title>
-          </v-card>
-        </v-col>
-        <v-col cols="12" md="3">
-          <v-card @click="redirectToHemodinamica()">
-            <v-card-title>Hemodinâmica</v-card-title>
-          </v-card>
-        </v-col>
-        <v-col cols="12" md="3">
-          <v-card @click="redirectToRespiracao()">
-            <v-card-title>Respiração</v-card-title>
-          </v-card>
-        </v-col>
-        <v-col cols="12" md="3">
-          <v-card @click="redirectToNeurologico()">
-            <v-card-title>Neurológico</v-card-title>
-          </v-card>
-        </v-col>
+      <v-col cols="12" md="3">
+        <v-card @click="redirectToSinaisVitais()">
+          <v-card-title>Sinais Vitais</v-card-title>
+        </v-card>
+      </v-col>
+      <v-col cols="12" md="3">
+        <v-card @click="redirectToHemodinamica()">
+          <v-card-title>Hemodinâmica</v-card-title>
+        </v-card>
+      </v-col>
+      <v-col cols="12" md="3">
+        <v-card @click="redirectToRespiracao()">
+          <v-card-title>Respiração</v-card-title>
+        </v-card>
+      </v-col>
+      <v-col cols="12" md="3">
+        <v-card @click="redirectToNeurologico()">
+          <v-card-title>Neurológico</v-card-title>
+        </v-card>
+      </v-col>
     </v-container>
     <!-- <v-form> -->
-      <div>
-        <!-- <v-row align="start" class="dados-paciente">
+    <div>
+      <!-- <v-row align="start" class="dados-paciente">
           <v-col cols="12" md="4">
             <label><b>Paciente</b></label>
             <v-text-field clearable v-model="nome" disabled></v-text-field>
@@ -34,64 +34,107 @@
             <v-text-field clearable v-model="data_internacao" disabled></v-text-field>
           </v-col>
         </v-row> -->
-      </div>
-  <!-- </v-form> -->
+    </div>
+    <!-- </v-form> -->
     <v-card-title class="title"><h2>Dashboard</h2></v-card-title>
-    <v-card-subtitle class="title">Temperatura</v-card-subtitle>
-      <LineChart v-if="dadosCarregados" :registro="registro" class="dashboard-temperatura"/>
+    <v-row>
+      <v-col cols="12" md="4">
+        <v-card-subtitle class="title">Temperatura</v-card-subtitle>
+        <LineChart
+          v-if="dadosCarregados"
+          :registro="registro"
+          class="dashboard-temperatura"
+        />
+      </v-col>
+      <v-col cols="12" md="4">
+        <v-card-subtitle class="title">Frequência Cardíaca</v-card-subtitle>
+        <DashBoardFrequenciaCardiaca
+          v-if="dadosCarregados"
+          :frequencia_cardiaca="frequencia_cardiaca"
+          class="dashboard-freq-card"
+        />
+      </v-col>
+      <v-col cols="12" md="4">
+        <v-card-subtitle class="title">Pressão Arterial</v-card-subtitle>
+        <DashBoardPressaoArterial
+          v-if="dadosCarregados"
+          :pa_media="pa_media"
+          class="dashboard-pa-media"
+        />
+      </v-col>
+    </v-row>
   </v-app>
 </template>
 
 <script>
-import LineChart from '@/components/DashBoard.vue';
+import LineChart from "@/components/DashBoard.vue";
 import Sinais from "../services/sinaisvitais";
+import DashBoardFrequenciaCardiaca from "@/components/DashBoardFrequenciaCardiaca.vue";
+import DashBoardPressaoArterial from "@/components/DashBoardPressaoArterial.vue";
 // import Usuario from "../services/usuario";
 
 export default {
   components: {
-    LineChart
+    LineChart,
+    DashBoardFrequenciaCardiaca,
+    DashBoardPressaoArterial,
   },
   data() {
     return {
       registro: [],
+      frequencia_cardiaca: [],
+      pa_media: [],
       dadosCarregados: false,
-      nome: '',
-      data_internacao: '',
+      nome: "",
+      data_internacao: "",
     };
   },
   mounted() {
-  Sinais.listarById(this.$route.params.id)
-    .then(response => {
-      this.registro = response.data;
-      this.dadosCarregados = true;
-      this.nome = this.$route.params.nome;
-      this.data_internacao = this.$route.params.data_internacao;
-
-    })
-    .catch(error => {
-      console.error(error);
-    });
-  // Usuario.getUsuario(this.$route.params.id)
-  //   .then(response => {
-  //     console.log('getUsuario ' +  response.data.map(item => item));
-  //     // this.nome = response.data.nome;
-  //   })
-  //   .catch(error => {
-  //     console.error(error);
-  //   });
+    Sinais.listarById(this.$route.params.id)
+      .then((response) => {
+        this.registro = response.data;
+        this.dadosCarregados = true;
+        this.nome = this.$route.params.nome;
+        this.data_internacao = this.$route.params.data_internacao;
+        this.frequencia_cardiaca = response.data;
+        this.pa_media = response.data;
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    // Usuario.getUsuario(this.$route.params.id)
+    //   .then(response => {
+    //     console.log('getUsuario ' +  response.data.map(item => item));
+    //     // this.nome = response.data.nome;
+    //   })
+    //   .catch(error => {
+    //     console.error(error);
+    //   });
   },
   methods: {
     redirectToSinaisVitais() {
-      this.$router.push({ name: 'SinaisVitais', params: { id: this.$route.params.id } });
+      this.$router.push({
+        name: "SinaisVitais",
+        params: { id: this.$route.params.id },
+      });
     },
     redirectToHemodinamica() {
-      this.$router.push({ name: 'Hemodinamica', params: { id: this.$route.params.id } });
+      this.$router.push({
+        name: "Hemodinamica",
+        params: { id: this.$route.params.id },
+      });
     },
     redirectToRespiracao() {
-      this.$router.push({ name: 'Respiracao', params: { id: this.$route.params.id } });
+      this.$router.push({
+        name: "Respiracao",
+        params: { id: this.$route.params.id },
+      });
     },
     redirectToNeurologico() {
-      this.$router.push({ name: 'Neurologico', params: { id: this.$route.params.id } });
+      this.$router.push({
+        name: "Neurologico",
+        params: { id: this.$route.params.id },
+      });
     },
   },
 };
@@ -110,29 +153,29 @@ export default {
   margin-top: -45px;
   border-radius: 10px; */
   /* flex-wrap: wrap; */
-  display:flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   /* height: 200px;
   width: 600px; */
   color: white;
-  background-color: #5faff0;;
+  background-color: #5faff0;
   height: 100px;
   width: 200px;
-  border-radius: 10px; 
+  border-radius: 10px;
 }
 
 .container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    /* height: 200px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  /* height: 200px;
     width: 500px; */
-    /* background-color: #5faff0;  */
-    color: #5faff0;
-    margin-top: -45px;
-    border-radius: 10px; 
-  }
+  /* background-color: #5faff0;  */
+  color: #5faff0;
+  margin-top: -45px;
+  border-radius: 10px;
+}
 .v-card:hover {
   background-color: #3f8ed0;
 }
@@ -160,6 +203,14 @@ export default {
   width: 450px;
   height: 250px;
 }
+.dashboard-freq-card {
+  width: 450px;
+  height: 250px;
+}
+.dashboard-pa-media {
+  width: 450px;
+  height: 250px;
+}
 
 .dados-paciente {
   padding: 20px;
@@ -184,18 +235,40 @@ export default {
   }
 
   .dashboard-temperatura {
-  width: 800px;
-  height: 250px;
-  display: flex;
-  /* justify-content: center;
-  align-items: center; */
-  margin-left: 120px;
-  height: 250px;
-  /* margin-top: 20px; */
+    width: 800px;
+    height: 250px;
+    display: flex;
+    /* justify-content: center;
+    align-items: center; */
+    margin-left: 120px;
+    height: 250px;
+    /* margin-top: 20px; */
+  }
+
+  .dashboard-freq-card {
+    width: 800px;
+    height: 250px;
+    display: flex;
+    /* justify-content: center;
+    align-items: center; */
+    margin-left: 120px;
+    height: 250px;
+    /* margin-top: 20px; */
+  }
+
+  .dashboard-pa-media {
+    width: 800px;
+    height: 250px;
+    display: flex;
+    /* justify-content: center;
+    align-items: center; */
+    margin-left: 120px;
+    height: 250px;
+    /* margin-top: 20px; */
   }
 
   .v-card {
-    display:flex;
+    display: flex;
     justify-content: space-between;
     align-items: center;
     width: 125px;
@@ -209,6 +282,19 @@ export default {
   .title {
     margin-top: 40px;
     color: #5faff0;
+  }
+
+  .dashboard-temperatura,
+  .dashboard-freq-card,
+  .dashboard-pa-media {
+    width: 100%;
+    margin-top: 20px;
+    overflow-x: auto;
+  }
+
+  .chart {
+    /* Defina as propriedades de altura apropriadas de acordo com o conteúdo dos gráficos */
+    height: 180px;
   }
 }
 </style>
