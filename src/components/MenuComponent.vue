@@ -37,30 +37,36 @@
     </div>
     <!-- </v-form> -->
     <v-card-title class="title"><h2>Dashboard</h2></v-card-title>
-    <v-row>
+    <v-row class="chart">
       <v-col cols="12" md="4">
         <v-card-subtitle class="title">Temperatura</v-card-subtitle>
+        <v-responsive>
         <LineChart
           v-if="dadosCarregados"
           :registro="registro"
-          class="dashboard-temperatura"
+          class="dashboard"
         />
+        </v-responsive>
       </v-col>
       <v-col cols="12" md="4">
         <v-card-subtitle class="title">Frequência Cardíaca</v-card-subtitle>
-        <DashBoardFrequenciaCardiaca
-          v-if="dadosCarregados"
-          :frequencia_cardiaca="frequencia_cardiaca"
-          class="dashboard-freq-card"
-        />
+        <v-responsive>
+          <DashBoardFrequenciaCardiaca
+            v-if="dadosCarregados"
+            :frequencia_cardiaca="frequencia_cardiaca"
+            class="dashboard"
+          />
+        </v-responsive>
       </v-col>
       <v-col cols="12" md="4">
         <v-card-subtitle class="title">Pressão Arterial</v-card-subtitle>
-        <DashBoardPressaoArterial
-          v-if="dadosCarregados"
-          :pa_media="pa_media"
-          class="dashboard-pa-media"
-        />
+        <v-responsive>
+          <DashBoardPressaoArterial
+            v-if="dadosCarregados"
+            :pa_media="pa_media"
+            class="dashboard"
+          />
+        </v-responsive>
       </v-col>
     </v-row>
   </v-app>
@@ -197,17 +203,6 @@ export default {
   justify-content: center;
   align-items: center;
   margin-bottom: 20px;
-}
-
-.dashboard-temperatura {
-  width: 450px;
-  height: 250px;
-}
-.dashboard-freq-card {
-  width: 450px;
-  height: 250px;
-}
-.dashboard-pa-media {
   width: 450px;
   height: 250px;
 }
@@ -234,37 +229,37 @@ export default {
     /* margin: 0 auto; */
   }
 
-  .dashboard-temperatura {
+  .dashboard {
     width: 800px;
     height: 250px;
-    display: flex;
+    /* display: flex; */
     /* justify-content: center;
     align-items: center; */
-    margin-left: 120px;
-    height: 250px;
+    /* margin-left: -10px; */
+    /* height: 250px; */
     /* margin-top: 20px; */
   }
 
   .dashboard-freq-card {
-    width: 800px;
+    /* width: 800px;
     height: 250px;
     display: flex;
-    /* justify-content: center;
-    align-items: center; */
+    justify-content: center;
+    align-items: center;
     margin-left: 120px;
     height: 250px;
-    /* margin-top: 20px; */
+    margin-top: 20px; */
   }
 
   .dashboard-pa-media {
-    width: 800px;
+    /* width: 800px;
     height: 250px;
     display: flex;
-    /* justify-content: center;
-    align-items: center; */
+    justify-content: center;
+    align-items: center;
     margin-left: 120px;
     height: 250px;
-    /* margin-top: 20px; */
+    margin-top: 20px; */
   }
 
   .v-card {
@@ -288,13 +283,13 @@ export default {
   .dashboard-freq-card,
   .dashboard-pa-media {
     width: 100%;
-    margin-top: 20px;
-    overflow-x: auto;
+    margin-top: 40px;
+    /* overflow-x: auto; */
   }
 
   .chart {
     /* Defina as propriedades de altura apropriadas de acordo com o conteúdo dos gráficos */
-    height: 180px;
+    height: 100px;
   }
 }
 </style>
