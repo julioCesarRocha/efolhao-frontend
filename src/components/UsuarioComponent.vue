@@ -3,7 +3,6 @@
     <v-form>
       <v-container fluid>
         <div>
-        <!-- Alerta de registro salvo com sucesso -->
           <v-alert
             :value="showSuccessAlert"
             type="success"
@@ -86,7 +85,6 @@ export default {
     },
 
     async salvar() {
-      //crie um data com os dados do formulário
       const data = {
         nome: this.nome,
         cpf: this.cpf,
@@ -98,25 +96,17 @@ export default {
       };
 
       const resposta = await Usuario.criarUsuario(data);
+      const id = resposta.data.id;
+
       if (resposta.status === 201) {
         this.showSuccessAlert = true;
         if (this.showSuccessAlert == true) {
           setTimeout(() => {
-            this.$router.push({ name: "Pacientes" });
+            this.$router.push({ name: "Pacientes", params: {id: id} });
           }, 3000);
         }
       }
     },
-
-    //   const dataJson = JSON.stringify(data);
-    //   const req = await fetch("http://127.0.0.1:8000/hemodinamica/", {
-    //     method: "POST",
-    //     headers: { "Content-Type": "application/json" },
-    //     body: dataJson,
-    //   });
-    //   const res = await req.json();
-    //   console.log(res);
-    // },
   },
  
 

@@ -22,30 +22,40 @@
         </v-card>
       </v-col>
     </v-container>
-    <!-- <v-form> -->
-    <div>
-      <!-- <v-row align="start" class="dados-paciente">
-          <v-col cols="12" md="4">
-            <label><b>Paciente</b></label>
+    <v-form>
+      <v-row align="start" class="dados-paciente flex flex-row">
+        <div class="flex flex-row col-12">
+          <v-col cols="12" md="6">
+            <label class="title"><b>Paciente</b></label>
             <v-text-field clearable v-model="nome" disabled></v-text-field>
           </v-col>
-          <v-col cols="12" md="4">
-            <label><b>Data Internação</b></label>
-            <v-text-field clearable v-model="data_internacao" disabled></v-text-field>
+          <v-col cols="12" md="6">
+            <label class="title"><b>Data Internação</b></label>
+            <v-text-field
+              clearable
+              v-model="data_internacao"
+              disabled
+            ></v-text-field>
           </v-col>
-        </v-row> -->
-    </div>
-    <!-- </v-form> -->
-    <v-card-title class="title"><h2>Dashboard</h2></v-card-title>
+        </div>
+        <v-col cols="12">
+          <div class="text-right">
+            <v-btn color="success" @click="altaPaciente">Alta</v-btn>
+          </div>
+        </v-col>
+      </v-row>
+
+    </v-form>
+    <v-card-title class="title" align="start"><h2>Dashboard</h2></v-card-title>
     <v-row class="chart">
       <v-col cols="12" md="4">
         <v-card-subtitle class="title">Temperatura</v-card-subtitle>
         <v-responsive>
-        <LineChart
-          v-if="dadosCarregados"
-          :registro="registro"
-          class="dashboard"
-        />
+          <LineChart
+            v-if="dadosCarregados"
+            :registro="registro"
+            class="dashboard"
+          />
         </v-responsive>
       </v-col>
       <v-col cols="12" md="4">
@@ -77,6 +87,8 @@ import LineChart from "@/components/DashBoard.vue";
 import Sinais from "../services/sinaisvitais";
 import DashBoardFrequenciaCardiaca from "@/components/DashBoardFrequenciaCardiaca.vue";
 import DashBoardPressaoArterial from "@/components/DashBoardPressaoArterial.vue";
+import { format } from "date-fns";
+
 // import Usuario from "../services/usuario";
 
 export default {
@@ -101,7 +113,10 @@ export default {
         this.registro = response.data;
         this.dadosCarregados = true;
         this.nome = this.$route.params.nome;
-        this.data_internacao = this.$route.params.data_internacao;
+        this.data_internacao = format(
+          new Date(this.$route.params.dataInternacao),
+          "dd/MM/yyyy"
+        );
         this.frequencia_cardiaca = response.data;
         this.pa_media = response.data;
       })
@@ -142,6 +157,19 @@ export default {
         params: { id: this.$route.params.id },
       });
     },
+    altaPaciente() {
+    this.$dialog
+      .confirm('Deseja dar alta ao paciente?') // Exibe a caixa de diálogo de confirmação
+      .then((dialog) => {
+        if (dialog.confirmed) {
+          // Se o usuário confirmar, atualize o atributo st_alta para 1
+          this.$set(this.registro, 'st_alta', 1);
+        }
+      })
+      .catch(() => {
+        // Tratar o cancelamento da caixa de diálogo (opcional)
+      });
+  },
   },
 };
 </script>
@@ -209,7 +237,7 @@ export default {
 
 .dados-paciente {
   padding: 20px;
-  margin-top: 15px;
+  margin-top: 20px;
   /* justify-content: flex-start;
   margin-top: 35px;  */
   /* display: flex;
@@ -240,28 +268,6 @@ export default {
     /* margin-top: 20px; */
   }
 
-  .dashboard-freq-card {
-    /* width: 800px;
-    height: 250px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: 120px;
-    height: 250px;
-    margin-top: 20px; */
-  }
-
-  .dashboard-pa-media {
-    /* width: 800px;
-    height: 250px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: 120px;
-    height: 250px;
-    margin-top: 20px; */
-  }
-
   .v-card {
     display: flex;
     justify-content: space-between;
@@ -284,12 +290,19 @@ export default {
   .dashboard-pa-media {
     width: 100%;
     margin-top: 40px;
-    /* overflow-x: auto; */
+    overflow-x: auto;
   }
 
   .chart {
-    /* Defina as propriedades de altura apropriadas de acordo com o conteúdo dos gráficos */
     height: 100px;
+    display: flex;
+    /* justify-content: center; */
+    margin: auto;
+    width: auto;
+    height: auto;
+  }
+  .flex-row {
+    flex-direction: row;
   }
 }
 </style>

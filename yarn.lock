@@ -6369,6 +6369,11 @@ vue-cli-plugin-vuetify@~2.4.8:
     semver "^7.1.2"
     shelljs "^0.8.3"
 
+vue-dialog@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/vue-dialog/-/vue-dialog-0.0.3.tgz#ec820af86f26f43a7c3cdc3ffe70d18829dc4271"
+  integrity sha512-Tssxv41cqJ5cCRdoJpccawIaeiH2Ok+4BRtZBH7ebtESurcXQz0iTBk5ouUakUORxIJdcufFMqG0Abis0nflhQ==
+
 vue-eslint-parser@^8.0.1:
   version "8.3.0"
   resolved "https://registry.yarnpkg.com/vue-eslint-parser/-/vue-eslint-parser-8.3.0.tgz#5d31129a1b3dd89c0069ca0a1c88f970c360bd0d"
@@ -6429,6 +6434,11 @@ vue@^2.6.14:
   dependencies:
     "@vue/compiler-sfc" "2.7.14"
     csstype "^3.1.0"
+
+vuejs-dialog@^1.4.2:
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/vuejs-dialog/-/vuejs-dialog-1.4.2.tgz#33ef5a7669291c1bb09f2e958c4a438e54cdd293"
+  integrity sha512-6kRse144WXDFBMKdeuqE43rHy0ZJ81uLOFh62r2d80ICKavQYHIvr+GlTFmoR23190lC4f2w+ZJ8cS4ljkCDMw==
 
 vuetify-loader@^1.7.0:
   version "1.9.2"
