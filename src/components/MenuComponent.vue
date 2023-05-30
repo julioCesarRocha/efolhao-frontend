@@ -123,9 +123,12 @@ export default {
       .catch((error) => {
         console.error(error);
       });
+
+      // const usuario = Usuario.getUsuario(this.$route.params.id);
+      // console.log('usuario ' + usuario);
     // Usuario.getUsuario(this.$route.params.id)
     //   .then(response => {
-    //     console.log('getUsuario ' +  response.data.map(item => item));
+    //     console.log('getUsuario ' +  response.data);
     //     // this.nome = response.data.nome;
     //   })
     //   .catch(error => {
@@ -159,15 +162,14 @@ export default {
     },
     altaPaciente() {
     this.$dialog
-      .confirm('Deseja dar alta ao paciente?') // Exibe a caixa de diálogo de confirmação
+      .confirm('Deseja dar alta ao paciente?')
       .then((dialog) => {
         if (dialog.confirmed) {
-          // Se o usuário confirmar, atualize o atributo st_alta para 1
           this.$set(this.registro, 'st_alta', 1);
         }
       })
       .catch(() => {
-        // Tratar o cancelamento da caixa de diálogo (opcional)
+        return; 
       });
   },
   },
