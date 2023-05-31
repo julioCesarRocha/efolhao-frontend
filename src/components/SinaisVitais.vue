@@ -147,7 +147,7 @@ export default {
         this.showSuccessAlert = true;
         if (this.showSuccessAlert == true) {
           setTimeout(() => {
-            this.$router.push({ name: "MenuComponent", params: { id: this.$route.params.id } });
+            this.$router.push({ name: "Pacientes", params: { id: this.$route.params.id } });
           }, 3000);
         }
       }
