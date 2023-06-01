@@ -190,8 +190,6 @@ export default {
 #div-botoes {
   margin-top: 10px;
   margin-right: 25px;
-  /* display: flex;
-  justify-content: space-between; */
 }
 
 .title {
