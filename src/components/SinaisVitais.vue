@@ -120,16 +120,15 @@ export default {
   },
   methods: {
     calcularPaMedia() {
-      const ps = Number(this.pa_sistolica);
-      const pd = Number(this.pa_diastolica);
-        if (!isNaN(ps) && !isNaN(pd)) {
-          // const pm = ps + (pd * 2) / 3;
-          const pm = ((Math.pow(pd, 2)) + ps)/3;
-          this.pa_media = pm.toFixed(2);
-        } else {
-          this.pa_media = "";
-        }
-    },
+    const ps = Number(this.pa_sistolica);
+    const pd = Number(this.pa_diastolica);
+    if (!isNaN(ps) && !isNaN(pd)) {
+      const pam = pd + (1/3) * (ps - pd);
+      this.pa_media = pam.toFixed(2);
+    } else {
+      this.pa_media = "";
+    }
+  },
     async salvar() {
       const data = {
         frequencia_respiratoria: this.frequencia_respiratoria,
@@ -191,8 +190,6 @@ export default {
 #div-botoes {
   margin-top: 10px;
   margin-right: 25px;
-  /* display: flex;
-  justify-content: space-between; */
 }
 
 .title {
