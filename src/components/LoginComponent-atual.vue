@@ -4,7 +4,7 @@
 
 <style>
     #toolbar {
-        background-color: #42A5F5;
+        background-color: #6273DD;
     }
     .loginOverlay {
       margin-top: 15px;

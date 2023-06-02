@@ -106,7 +106,7 @@ export default {
 .title {
   justify-content: center;
   text-align: center;
-  color: #42A5F5;
+  color: #6273DD;
 }
 .container {
   margin: 10px;

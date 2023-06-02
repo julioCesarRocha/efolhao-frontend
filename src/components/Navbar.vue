@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="div-img">
     <img :src="require('@/assets/banner.png')" alt="Minha imagem" id="navbar-banner">
   </div>
 </template>
@@ -18,4 +18,7 @@ export default {
     /* object-fit: cover; */
   }
 
+  .div-img {
+    background-color: #f1f1f1;
+  }
 </style>

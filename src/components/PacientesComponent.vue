@@ -70,7 +70,7 @@ export default {
 .v-card {
   padding: 10px;
   align-content: center;
-  color: #42a5f5;
+  color: #6273DD;
   margin: 0 auto;
   max-width: 500px;
   margin-top: 10px;
@@ -79,7 +79,7 @@ export default {
 .v-card__title {
   justify-content: left;
   text-align: left;
-  color: #42a5f5;
+  color: #6273DD;
 
 }
 

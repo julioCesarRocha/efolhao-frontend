@@ -76,7 +76,7 @@ export default {
 
 <style scoped>
 #toolbar {
-  background-color: #42a5f5;
+  background-color: #6273DD;
 }
 .login {
   /* margin-top: 15px; */
@@ -84,6 +84,15 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 60px;
+  border-radius: 8px;
+  /* insira um pouco de sombra e eleve essa classe */
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  margin: 0 auto;
+  max-width: 500px;
+  margin-top: 30px;
+
 }
 
 #navbar-banner {
@@ -99,7 +108,16 @@ export default {
 .title {
   justify-content: center;
   text-align: center;
-  color: #42a5f5;
+  color: #6273DD;
 }
+#app {
+  background-color: #f1f1f1;
+}
+
+/* html,
+body {
+  overflow: hidden;
+} */
+
 </style>
 

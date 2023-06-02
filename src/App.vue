@@ -4,7 +4,6 @@
     <MenuComponent />
     <LoginComponent v-if="showLogin" /> 
     <router-view v-else></router-view>
-    <!-- <router-view></router-view> -->
   </v-app>
 </template>
 

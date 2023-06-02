@@ -225,7 +225,7 @@ export default {
 .title {
   justify-content: center;
   text-align: center;
-  color: #42a5f5;
+  color: #6273DD;
 }
 
 .dashboard {
