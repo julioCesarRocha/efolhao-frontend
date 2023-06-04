@@ -11,7 +11,7 @@
     <v-card-title class="title">
       <h2>Login</h2>
     </v-card-title>
-    <v-card width="500" height="400" class="login mx-auto">
+    <v-card width="500" height="400" class="login mx-auto" elevation="10">
       <v-card-text class="pt-4">
         <v-row>
           <v-col cols="12" md="12">
@@ -79,14 +79,12 @@ export default {
   background-color: #6273DD;
 }
 .login {
-  /* margin-top: 15px; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-top: 60px;
   border-radius: 8px;
-  /* insira um pouco de sombra e eleve essa classe */
   box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.2);
   padding: 20px;
   margin: 0 auto;
@@ -97,12 +95,11 @@ export default {
 
 #navbar-banner {
   width: 100%;
-  height: 400px; /* por exemplo, altura desejada para a navbar */
+  height: 400px;
 }
 
 .btn-login {
   margin-top: 45px;
-  /* margin-bottom: 5px; */
 }
 
 .title {
@@ -114,10 +111,4 @@ export default {
   background-color: #f1f1f1;
 }
 
-/* html,
-body {
-  overflow: hidden;
-} */
-
 </style>
-

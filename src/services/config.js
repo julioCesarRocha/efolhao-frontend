@@ -3,7 +3,7 @@ import axios from 'axios'
 
 
 export const http = axios.create({
-    baseURL: 'e-viss.azurewebsites.net/',
+    baseURL: 'http://127.0.0.1:8000/',
     timeout: 5000,
     headers: {
       'Content-Type': 'application/json',

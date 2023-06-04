@@ -1,5 +1,6 @@
 <template>
-    <v-form id="form-respiracao">
+  <v-app>
+    <v-form>
       <v-container fluid>
         <div>
           <v-alert
@@ -48,6 +49,7 @@
         <v-btn color="error" class="mr-4"> Cancelar </v-btn>
       </div>
     </v-form>
+  </v-app>
 </template>
 
 <script>
@@ -111,9 +113,7 @@ export default {
 <style scoped>
 * {
   font-family: "Days One", sans-serif;
-  padding: 0;
   margin: 0;
-  box-sizing: border-box;
 }
 
 #form-sinais-vitais {
@@ -126,8 +126,6 @@ export default {
 #div-botoes {
   margin-top: 10px;
   margin-right: 25px;
-  /* display: flex;
-  justify-content: space-between; */
 }
 
 .title {
@@ -135,3 +133,10 @@ export default {
   text-align: center;
   color: #6273DD;
 }
+
+.container {
+  padding: 20px;
+}
+
+</style>
+

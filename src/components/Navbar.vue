@@ -14,11 +14,11 @@ export default {
 <style scoped>
    #navbar-banner {
     width: 100%;
-    height: 200px; /* por exemplo, altura desejada para a navbar */
+    height: 200px; 
     /* object-fit: cover; */
   }
 
   .div-img {
-    background-color: #f1f1f1;
+    background-color: #F4F5F7;
   }
 </style>

@@ -161,23 +161,19 @@ export default {
 <style scoped>
 * {
   font-family: "Days One", sans-serif;
-  padding: 0;
   margin: 0;
-  box-sizing: border-box;
 }
-
+/* 
 #form-sinais-vitais {
   font-family: "Days One", sans-serif;
   width: 600px;
   margin-left: auto;
   margin-right: auto;
-}
+} */
 
 #div-botoes {
   margin-top: 10px;
   margin-right: 25px;
-  /* display: flex;
-  justify-content: space-between; */
 }
 
 .title {
@@ -185,3 +181,8 @@ export default {
   text-align: center;
   color: #6273DD;
 }
+
+#app {
+  background-color: #F4F5F7;
+}
+</style>

@@ -2,23 +2,35 @@
   <v-app>
     <v-container>
       <v-col cols="12" md="3">
-        <v-card @click="redirectToSinaisVitais()">
-          <v-card-title>Sinais Vitais</v-card-title>
+        <v-card @click="redirectToSinaisVitais()" class="custom-card">
+          <v-card-title class="custom-card-title">
+            <v-icon color="white">mdi-heart-pulse</v-icon>
+            <h3 class="text-center">Sinais Vitais</h3>
+          </v-card-title>
         </v-card>
       </v-col>
       <v-col cols="12" md="3">
-        <v-card @click="redirectToHemodinamica()">
-          <v-card-title>Hemodinâmica</v-card-title>
+        <v-card @click="redirectToHemodinamica()" class="custom-card">
+          <v-card-title class="custom-card-title">
+            <v-icon color="white">mdi-water-outline</v-icon>
+            <h3 class="text-center">Hemodinâmica</h3>
+          </v-card-title>
         </v-card>
       </v-col>
       <v-col cols="12" md="3">
-        <v-card @click="redirectToRespiracao()">
-          <v-card-title>Respiração</v-card-title>
+        <v-card @click="redirectToRespiracao()" class="custom-card">
+          <v-card-title class="custom-card-title">
+            <v-icon color="white">mdi-lungs</v-icon>
+            <h3 class="text-center">Respiração</h3>
+          </v-card-title>
         </v-card>
       </v-col>
       <v-col cols="12" md="3">
-        <v-card @click="redirectToNeurologico()">
-          <v-card-title>Neurológico</v-card-title>
+        <v-card @click="redirectToNeurologico()" class="custom-card">
+          <v-card-title class="custom-card-title">
+            <v-icon color="white">mdi-brain</v-icon>
+            <h3 class="text-center">Neurolôgico</h3>
+          </v-card-title>
         </v-card>
       </v-col>
     </v-container>
@@ -44,7 +56,6 @@
           </div>
         </v-col>
       </v-row>
-
     </v-form>
     <v-card-title class="title" align="start"><h2>Dashboard</h2></v-card-title>
     <v-row class="chart">
@@ -124,8 +135,8 @@ export default {
         console.error(error);
       });
 
-      // const usuario = Usuario.getUsuario(this.$route.params.id);
-      // console.log('usuario ' + usuario);
+    // const usuario = Usuario.getUsuario(this.$route.params.id);
+    // console.log('usuario ' + usuario);
     // Usuario.getUsuario(this.$route.params.id)
     //   .then(response => {
     //     console.log('getUsuario ' +  response.data);
@@ -161,41 +172,28 @@ export default {
       });
     },
     altaPaciente() {
-    this.$dialog
-      .confirm('Deseja dar alta ao paciente?')
-      .then((dialog) => {
-        if (dialog.confirmed) {
-          this.$set(this.registro, 'st_alta', 1);
-        }
-      })
-      .catch(() => {
-        return; 
-      });
-  },
+      this.$dialog
+        .confirm("Deseja dar alta ao paciente?")
+        .then((dialog) => {
+          if (dialog.confirmed) {
+            this.$set(this.registro, "st_alta", 1);
+          }
+        })
+        .catch(() => {
+          return;
+        });
+    },
   },
 };
 </script>
 
 <style scoped>
 .v-card {
-  /* display: flex;
-  justify-content: center;
-  align-items: space-between; */
-  /* flex-direction: row; */
-  /* height: 90px;
-  width: 170px;
-  background-color: #5faff0;
-  color: white;
-  margin-top: -45px;
-  border-radius: 10px; */
-  /* flex-wrap: wrap; */
   display: flex;
   justify-content: center;
   align-items: center;
-  /* height: 200px;
-  width: 600px; */
   color: white;
-  background-color: #5faff0;
+  background-color: #6273dd;
   height: 100px;
   width: 200px;
   border-radius: 10px;
@@ -205,15 +203,12 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  /* height: 200px;
-    width: 500px; */
-  /* background-color: #5faff0;  */
-  color: #5faff0;
+  color: #6273dd;
   margin-top: -45px;
   border-radius: 10px;
 }
 .v-card:hover {
-  background-color: #3f8ed0;
+  background-color: #6273dd;
 }
 .v-card__title {
   display: flex;
@@ -225,7 +220,7 @@ export default {
 .title {
   justify-content: center;
   text-align: center;
-  color: #6273DD;
+  color: #6273dd;
 }
 
 .dashboard {
@@ -240,11 +235,16 @@ export default {
 .dados-paciente {
   padding: 20px;
   margin-top: 20px;
-  /* justify-content: flex-start;
-  margin-top: 35px;  */
-  /* display: flex;
-  justify-content: left;
-  align-items: left;*/
+}
+
+.custom-card {
+  width: 300px;
+}
+
+.custom-card-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 @media screen and (max-width: 830px) {
@@ -254,27 +254,19 @@ export default {
     justify-content: center;
     height: 90px;
     width: 200px;
-    /* background-color: #5faff0; */
     color: white;
-    /* margin: 0 auto; */
   }
 
   .dashboard {
     width: 800px;
     height: 250px;
-    /* display: flex; */
-    /* justify-content: center;
-    align-items: center; */
-    /* margin-left: -10px; */
-    /* height: 250px; */
-    /* margin-top: 20px; */
   }
 
   .v-card {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 125px;
+    width: 130px;
     margin: auto;
   }
 
@@ -284,7 +276,7 @@ export default {
 
   .title {
     margin-top: 40px;
-    color: #5faff0;
+    color: #6273dd;
   }
 
   .dashboard-temperatura,

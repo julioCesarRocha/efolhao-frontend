@@ -3,7 +3,6 @@
     <v-form>
       <v-container fluid>
         <div>
-        <!-- Alerta de registro salvo com sucesso -->
           <v-alert
             :value="showSuccessAlert"
             type="success"
@@ -176,7 +175,6 @@ export default {
 * {
   font-family: "Days One", sans-serif;
   margin: 0;
-  box-sizing: border-box;
 }
 
 #form-sinais-vitais {
@@ -197,4 +195,7 @@ export default {
   color: #6273DD;
 }
 
+.container {
+  padding: 20px;
+}
 </style>

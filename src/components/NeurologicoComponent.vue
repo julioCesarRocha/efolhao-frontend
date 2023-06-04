@@ -103,13 +103,27 @@ export default {
 </script>
 
 <style scoped>
+
+* {
+  font-family: "Days One", sans-serif;
+  margin: 0;
+}
+
 .title {
   justify-content: center;
   text-align: center;
   color: #6273DD;
 }
 .container {
-  margin: 10px;
-  padding: auto;
+  padding: 20px;
+}
+
+#app {
+  background-color: #F4F5F7;
+}
+
+#div-botoes {
+  margin-top: 10px;
+  margin-right: 25px;
 }
 </style>
