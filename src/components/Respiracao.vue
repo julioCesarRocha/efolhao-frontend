@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-form>
-      <v-container fluid>
+      <v-container fluid class="container-padding">
         <div>
           <v-alert
             :value="showSuccessAlert"
@@ -11,43 +11,71 @@
           >
             Cadastro relizado com sucesso!
           </v-alert>
-          <v-card-title class="title" >
+          <v-card-title class="title">
             <h3>Dados Respiratórios</h3>
           </v-card-title>
         </div>
-        <v-row>
-          <v-col cols="12" md="6">
-            <v-select v-model="modo_esp" label="Modo Esp" :items="listaModoEsp" required> </v-select>
-          </v-col>
-          <v-col cols="12" md="6">
-            <v-select v-model="modo_vm" label="Modo VM" :items="listaModoVm" required> </v-select>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col cols="12" md="6">
-            <v-select v-model="fi02" label="Fi02 (%)" :items="listaFi02" required> </v-select>
-          </v-col>
-          <v-col cols="12" md="6">
-            <v-text-field v-model="peep" label="Pressão Expiratória Final Positiva (PEEP)" required> </v-text-field>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col cols="12" md="6">
-            <v-text-field v-model="p_pico" label="Pressão de Pico" required>
-            </v-text-field>
-          </v-col>
-          <v-col cols="12" md="6">
-            <v-text-field v-model="volume_corrente" label="Volume Corrente" required>
-            </v-text-field>
-          </v-col>
-        </v-row>
+        <v-card class="custom-card" elevation="10">
+          <v-row>
+            <v-col cols="12" md="6">
+              <v-select
+                v-model="modo_esp"
+                label="Modo Esp"
+                :items="listaModoEsp"
+                required
+              >
+              </v-select>
+            </v-col>
+            <v-col cols="12" md="6">
+              <v-select
+                v-model="modo_vm"
+                label="Modo VM"
+                :items="listaModoVm"
+                required
+              >
+              </v-select>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="12" md="6">
+              <v-select
+                v-model="fi02"
+                label="Fi02 (%)"
+                :items="listaFi02"
+                required
+              >
+              </v-select>
+            </v-col>
+            <v-col cols="12" md="6">
+              <v-text-field
+                v-model="peep"
+                label="Pressão Expiratória Final Positiva (PEEP)"
+                required
+              >
+              </v-text-field>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="12" md="6">
+              <v-text-field v-model="p_pico" label="Pressão de Pico" required>
+              </v-text-field>
+            </v-col>
+            <v-col cols="12" md="6">
+              <v-text-field
+                v-model="volume_corrente"
+                label="Volume Corrente"
+                required
+              >
+              </v-text-field>
+            </v-col>
+          </v-row>
+          <div id="div-botoes" align="right">
+            <v-btn color="success" class="mr-4" @click="salvar">Salvar</v-btn>
+
+            <v-btn color="error" class="mr-4"> Cancelar </v-btn>
+          </div>
+        </v-card>
       </v-container>
-
-      <div id="div-botoes" align="right">
-        <v-btn color="success" class="mr-4" @click="salvar">Salvar</v-btn>
-
-        <v-btn color="error" class="mr-4"> Cancelar </v-btn>
-      </div>
     </v-form>
   </v-app>
 </template>
@@ -59,25 +87,29 @@ export default {
   name: "RespiracaoComponent",
   data() {
     return {
-        showSuccessAlert: false,
+      showSuccessAlert: false,
 
-        modo_esp: this.modo_esp,
-        modo_vm: this.modo_vm,
-        fi02: this.fi02,
-        peep: this.peep,
-        p_pico: this.p_pico,
-        volume_corrente: this.volume_corrente,
+      modo_esp: this.modo_esp,
+      modo_vm: this.modo_vm,
+      fi02: this.fi02,
+      peep: this.peep,
+      p_pico: this.p_pico,
+      volume_corrente: this.volume_corrente,
 
-      listaModoEsp: ["Ambiente", "Cateter Nasal", "Máscara de Venturi", "Ventilação Não-Invasiva", "VM Em Modo Espontâneo/CPAP"],
+      listaModoEsp: [
+        "Ambiente",
+        "Cateter Nasal",
+        "Máscara de Venturi",
+        "Ventilação Não-Invasiva",
+        "VM Em Modo Espontâneo/CPAP",
+      ],
       listaModoVm: ["CPAP", "PCV", "VCV"],
-      listaFi02: [24, 28, 32, 36]
+      listaFi02: [24, 28, 32, 36],
     };
   },
 
   methods: {
-    mounted() {
-     
-    },
+    mounted() {},
 
     async salvar() {
       const data = {
@@ -93,7 +125,7 @@ export default {
       const resposta = await Respiracao.inserirDadosRespiratorios(data);
       const form = document.getElementById("form-respiracao");
       const elementosSelecionados = form.getElementsByTagName("select");
-      
+
       if (resposta.status === 201) {
         this.showSuccessAlert = true;
         for (let i = 0; i < elementosSelecionados.length; i++) {
@@ -101,7 +133,10 @@ export default {
         }
         if (this.showSuccessAlert == true) {
           setTimeout(() => {
-            this.$router.push({ name: "Pacientes", params: { id: this.$route.params.id } });
+            this.$router.push({
+              name: "Pacientes",
+              params: { id: this.$route.params.id },
+            });
           }, 3000);
         }
       }
@@ -123,20 +158,30 @@ export default {
   margin-right: auto;
 }
 
-#div-botoes {
-  margin-top: 10px;
-  margin-right: 25px;
-}
-
 .title {
   justify-content: center;
   text-align: center;
-  color: #6273DD;
+  color: #6273dd;
 }
 
-.container {
-  padding: 20px;
+.container-padding {
+  padding: 55px;
 }
 
+.custom-card {
+  max-width: 800px; 
+  margin: 10px auto;
+  padding: 40px;
+  margin-top: 5px;
+  border-radius: 15px;
+}
+
+.v-form {
+  margin-top: -60px;
+}
+
+#app {
+  background-color: #F4F5F7;
+}
 </style>
 

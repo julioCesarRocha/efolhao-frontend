@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-form>
-      <v-container fluid>
+      <v-container fluid class="container-padding">
         <div>
           <v-alert
             :value="showSuccessAlert"
@@ -133,11 +133,19 @@ export default {
   background-color: #f4f5f7;
 }
 
+.container-padding {
+  padding: 55px;
+}
+
 .custom-card {
   max-width: 800px; 
   margin: 10px auto;
-  padding: 20px;
+  padding: 40px;
   margin-top: 5px;
   border-radius: 15px;
+}
+
+.v-form {
+  margin-top: -60px;
 }
 </style>

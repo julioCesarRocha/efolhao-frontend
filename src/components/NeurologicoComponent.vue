@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-form>
-      <v-container fluid>
+      <v-container fluid class="container-padding">
         <div>
           <v-alert
             :value="showSuccessAlert"
@@ -15,6 +15,7 @@
             <h3>Dados Neurológicos</h3>
           </v-card-title>
         </div>
+        <v-card class="custom-card" elevation="10">
         <v-row>
           <v-col cols="12" md="6">
             <v-text-field v-model="glasgow" label="Glasgow" required> </v-text-field>
@@ -39,13 +40,14 @@
             <v-text-field v-model="sj02" label="SjO2" required />        
           </v-col>
         </v-row>
+        <div id="div-botoes" align="right">
+          <v-btn color="success" class="mr-4" @click="salvar">Salvar</v-btn>
+  
+          <v-btn color="error" class="mr-4"> Cancelar </v-btn>
+        </div>
+        </v-card>
       </v-container>
 
-      <div id="div-botoes" align="right">
-        <v-btn color="success" class="mr-4" @click="salvar">Salvar</v-btn>
-
-        <v-btn color="error" class="mr-4"> Cancelar </v-btn>
-      </div>
     </v-form>
   </v-app>
   </template>
@@ -118,12 +120,23 @@ export default {
   padding: 20px;
 }
 
-#app {
-  background-color: #F4F5F7;
+.container-padding {
+  padding: 55px;
 }
 
-#div-botoes {
-  margin-top: 10px;
-  margin-right: 25px;
+.custom-card {
+  max-width: 800px; 
+  margin: 10px auto;
+  padding: 40px;
+  margin-top: 5px;
+  border-radius: 15px;
+}
+
+.v-form {
+  margin-top: -60px;
+}
+
+#app {
+  background-color: #F4F5F7;
 }
 </style>
