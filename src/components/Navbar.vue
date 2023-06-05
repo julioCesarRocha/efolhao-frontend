@@ -1,6 +1,10 @@
 <template>
   <div class="div-img">
-    <img :src="require('@/assets/banner.png')" alt="Minha imagem" id="navbar-banner">
+    <img
+      :src="require('@/assets/banner.png')"
+      alt="Minha imagem"
+      id="navbar-banner"
+    />
   </div>
 </template>
 
@@ -12,13 +16,21 @@ export default {
 </script>
 
 <style scoped>
-   #navbar-banner {
-    width: 100%;
-    height: 200px; 
-    /* object-fit: cover; */
-  }
+#navbar-banner {
+  width: 100%;
+  height: 200px;
+  /* object-fit: fill; */
+}
 
-  .div-img {
-    background-color: #F4F5F7;
+.div-img {
+  background-color: #f4f5f7;
+}
+
+@media screen and (max-width: 830px) {
+  #navbar-banner {
+    width: 100%;
+    height: 200px;
+    object-fit: fill;
   }
+}
 </style>

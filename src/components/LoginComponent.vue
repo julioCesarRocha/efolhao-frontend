@@ -80,7 +80,7 @@ export default {
 }
 .login {
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   justify-content: center;
   align-items: center;
   margin-top: 60px;
@@ -88,8 +88,8 @@ export default {
   box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.2);
   padding: 20px;
   margin: 0 auto;
-  max-width: 500px;
-  margin-top: 30px;
+  /* max-width: 500px; */
+  /* margin-top: 30px; */
 
 }
 
@@ -108,7 +108,7 @@ export default {
   color: #6273DD;
 }
 #app {
-  background-color: #f1f1f1;
+  background-color: #F4F5F7;
 }
 
 </style>

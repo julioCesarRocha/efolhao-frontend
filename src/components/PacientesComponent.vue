@@ -4,7 +4,7 @@
       <h2>Pacientes</h2> 
       <v-btn color="success" class="ml-auto mr-2" @click="cadastrarPaciente">Novo</v-btn>
     </v-card-title>
-    <v-card class="custom-card" elevation="10"> <!-- Adicione a classe custom-card e elevation -->
+    <v-card class="custom-card" elevation="10">
       <v-card-text>
         <!-- <v-list> -->
           <v-list-item v-for="patient in patients" :key="patient.id" @click="detalharPaciente(patient.id, patient.nome, patient.data_criacao)">
