@@ -40,7 +40,7 @@
               <v-text-field v-model="peso" label="Peso" required />
             </v-col>
             <v-col cols="12" md="2">
-              <v-text-field v-model="reg" label="Reg" required />
+              <v-text-field v-model="reg" label="Registro" required />
             </v-col>
             <v-col cols="12" md="2">
               <v-text-field v-model="convenio" label="Convênio" required />
