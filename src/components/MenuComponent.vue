@@ -42,7 +42,7 @@
             <v-text-field clearable v-model="nome" disabled></v-text-field>
           </v-col>
           <v-col cols="12" md="6">
-            <label class="title"><b>Data Internação</b></label>
+            <label class="title"><b>Internação</b></label>
             <v-text-field
               clearable
               v-model="data_internacao"
@@ -62,11 +62,26 @@
       <v-col cols="12" md="4">
         <v-card-subtitle class="title">Temperatura</v-card-subtitle>
         <v-responsive>
-          <LineChart
-            v-if="dadosCarregados"
-            :registro="registro"
-            class="dashboard"
-          />
+          <v-row class="alerta-tempertatura">
+            <v-col cols="12" sm="6">
+              <v-alert
+                v-if="verificarTemperaturaExcedida()"
+                type="error"
+                dense
+              >
+              Foi registrada ao menos uma temperatura acima de 37,0 ºC
+              </v-alert>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="12" sm="12">
+              <LineChart
+                v-if="dadosCarregados"
+                :registro="registro"
+                class="dashboard"
+              />
+            </v-col>
+          </v-row>
         </v-responsive>
       </v-col>
       <v-col cols="12" md="4">
@@ -183,6 +198,14 @@ export default {
           return;
         });
     },
+
+    verificarTemperaturaExcedida() {
+      if (this.registro && this.registro.length > 0) {
+        const temperaturas = this.registro.map((item) => item.temperatura);
+        return temperaturas.some((temp) => temp > 37.0);
+      }
+      return false;
+    },
   },
 };
 </script>
@@ -290,6 +313,7 @@ export default {
   .chart {
     height: 100px;
     display: flex;
+    align-items: flex-start;
     /* justify-content: center; */
     margin: auto;
     width: auto;
@@ -297,6 +321,11 @@ export default {
   }
   .flex-row {
     flex-direction: row;
+  }
+
+  .alerta-tempertatura {
+    display: flex;
+    justify-content: space-around;
   }
 }
 </style>

@@ -5,15 +5,34 @@
       <v-btn color="success" class="ml-auto mr-2" @click="cadastrarPaciente">Novo</v-btn>
     </v-card-title>
     <v-card class="custom-card" elevation="10">
+      <v-row class="cabecalho">
+          <v-col cols="6">
+            <h3>NOME</h3>
+          </v-col>
+          <v-col cols="6" class="internacao">
+            <h3>INTERNAÇÃO</h3>
+          </v-col>
+        </v-row>
+        <v-divider :thickness="7"></v-divider>
       <v-card-text>
         <!-- <v-list> -->
           <v-list-item v-for="patient in patients" :key="patient.id" @click="detalharPaciente(patient.id, patient.nome, patient.data_criacao)">
             <input type="hidden" :value="patient.id" />
             <v-list-item-content>
-              <v-list-item-title>{{ patient.nome }}</v-list-item-title>
+              <v-row>
+                <v-col cols="6">
+                  <v-list-item-title>{{ patient.nome }}</v-list-item-title>
+                </v-col>
+                <v-col cols="6" align="right">
+                  <v-list-item-subtitle>{{
+                    new Date(patient.data_criacao).toLocaleDateString("pt-BR")}}
+                  </v-list-item-subtitle>
+                </v-col>
+              </v-row>
+              <!-- <v-list-item-title>{{ patient.nome }}</v-list-item-title>
               <v-list-item-subtitle>{{
                 new Date(patient.data_nascimento).toLocaleDateString("pt-BR")}}
-              </v-list-item-subtitle>
+              </v-list-item-subtitle> -->
               <v-divider :thickness="7"></v-divider>
             </v-list-item-content>
             <!-- <v-btn color="success" class="ml-auto mr-2">Alta</v-btn> -->
@@ -77,7 +96,7 @@ export default {
 }
 
 .v-card__text {
-  width: 500px; /* Ajuste o valor conforme necessário */
+  width: 500px;
 }
 
 .v-card__title {
@@ -97,5 +116,26 @@ export default {
 
 #app {
   background-color: #F4F5F7;
+}
+
+.header-col {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cabecalho {
+  margin: -15px auto;
+  width: 500px;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 20px;
+
+}
+
+.internacao {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
 }
 </style>
