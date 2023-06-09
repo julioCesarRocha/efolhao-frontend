@@ -106,7 +106,7 @@ export default {
       const resposta = await Usuario.criarUsuario(data);
       const id = resposta.data.id;
 
-      if (resposta.status === 201) {
+      if (resposta.status === 200) {
         this.showSuccessAlert = true;
         if (this.showSuccessAlert == true) {
           setTimeout(() => {

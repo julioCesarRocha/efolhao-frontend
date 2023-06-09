@@ -75,7 +75,6 @@ export default {
       }
     },
     detalharPaciente(id, nome, dataInternacao) {
-      console.log(this.patients);
       this.$router.push({ name: "MenuComponent", params: { id: id, nome: nome, dataInternacao: dataInternacao} });
     },
     cadastrarPaciente() {

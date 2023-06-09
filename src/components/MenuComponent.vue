@@ -57,10 +57,24 @@
         </v-col>
       </v-row>
     </v-form>
-    <v-card-title class="title" align="start"><h2>Dashboard</h2></v-card-title>
-    <v-row class="chart">
+
+    <br />
+    <v-row class="alerta-tempertatura">
+      <v-col cols="12" sm="6">
+        <v-alert
+          v-if="dadosNaoEncontrados"
+          type="info"
+          dense
+          elevation="4"
+        >
+        Ainda não foram cadastrados dados para este paciente
+        </v-alert>
+      </v-col>
+    </v-row>
+    
+    <v-card-title v-if="!dadosNaoEncontrados" class="title" align="start"><h2>Dashboard</h2></v-card-title>
+    <v-row v-if="!dadosNaoEncontrados" class="chart">
       <v-col cols="12" md="4">
-        <v-card-subtitle class="title">Temperatura</v-card-subtitle>
         <v-responsive>
           <v-row class="alerta-tempertatura">
             <v-col cols="12" sm="6">
@@ -85,7 +99,6 @@
         </v-responsive>
       </v-col>
       <v-col cols="12" md="4">
-        <v-card-subtitle class="title">Frequência Cardíaca</v-card-subtitle>
         <v-responsive>
           <DashBoardFrequenciaCardiaca
             v-if="dadosCarregados"
@@ -95,7 +108,6 @@
         </v-responsive>
       </v-col>
       <v-col cols="12" md="4">
-        <v-card-subtitle class="title">Pressão Arterial</v-card-subtitle>
         <v-responsive>
           <DashBoardPressaoArterial
             v-if="dadosCarregados"
@@ -114,8 +126,7 @@ import Sinais from "../services/sinaisvitais";
 import DashBoardFrequenciaCardiaca from "@/components/DashBoardFrequenciaCardiaca.vue";
 import DashBoardPressaoArterial from "@/components/DashBoardPressaoArterial.vue";
 import { format } from "date-fns";
-
-// import Usuario from "../services/usuario";
+import Usuario from "../services/usuario";
 
 export default {
   components: {
@@ -131,9 +142,22 @@ export default {
       dadosCarregados: false,
       nome: "",
       data_internacao: "",
+      dadosNaoEncontrados: false
     };
   },
   mounted() {
+    Usuario.getUsuario(this.$route.params.id)
+    .then((response) => {
+      this.nome = response.data.nome;
+      this.data_internacao = format(
+        new Date(response.data.data_criacao),
+        "dd/MM/yyyy"
+      );
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+
     Sinais.listarById(this.$route.params.id)
       .then((response) => {
         this.registro = response.data;
@@ -147,19 +171,13 @@ export default {
         this.pa_media = response.data;
       })
       .catch((error) => {
-        console.error(error);
+        if (error.response && error.response.status === 404) {
+          this.dadosNaoEncontrados = true;
+        } else {
+          console.error(error);
+        }
       });
 
-    // const usuario = Usuario.getUsuario(this.$route.params.id);
-    // console.log('usuario ' + usuario);
-    // Usuario.getUsuario(this.$route.params.id)
-    //   .then(response => {
-    //     console.log('getUsuario ' +  response.data);
-    //     // this.nome = response.data.nome;
-    //   })
-    //   .catch(error => {
-    //     console.error(error);
-    //   });
   },
   methods: {
     redirectToSinaisVitais() {
@@ -326,6 +344,15 @@ export default {
   .alerta-tempertatura {
     display: flex;
     justify-content: space-around;
+  }
+
+  .alerta-wrapper {
+    display: flex;
+    justify-content: center;
+  }
+
+  .alerta-centralizado {
+    margin: auto;
   }
 }
 </style>

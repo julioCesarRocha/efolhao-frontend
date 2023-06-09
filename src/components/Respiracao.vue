@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-form>
+    <v-form  id="form-respiracao">
       <v-container fluid class="container-padding">
         <div>
           <v-alert
@@ -126,7 +126,7 @@ export default {
       const form = document.getElementById("form-respiracao");
       const elementosSelecionados = form.getElementsByTagName("select");
 
-      if (resposta.status === 201) {
+      if (resposta.status === 200) {
         this.showSuccessAlert = true;
         for (let i = 0; i < elementosSelecionados.length; i++) {
           elementosSelecionados[i].selectedIndex = 0;

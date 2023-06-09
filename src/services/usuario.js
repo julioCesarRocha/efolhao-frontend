@@ -12,7 +12,8 @@ const instance = axios.create({
       return instance.get("usuario");
     },
     getUsuario: (id) => {
-      return instance.get(`usuario/${id}`);
+      const idUsuario = String(id);
+      return instance.get(`usuario/${idUsuario}/`);
     },
     criarUsuario: (usuarioData) => {
       return instance.post("usuario/", usuarioData);

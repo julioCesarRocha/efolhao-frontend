@@ -89,7 +89,7 @@ export default {
       };
 
       const resposta = await Neurologico.inserirDadosNeurologicos(data);
-      if (resposta.status === 201) {
+      if (resposta.status === 200) {
         this.showSuccessAlert = true;
         if (this.showSuccessAlert == true) {
           setTimeout(() => {

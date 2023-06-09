@@ -143,7 +143,7 @@ export default {
       };
 
       const resposta = await Hemodinamica.salvar(data);
-      if (resposta.status === 201) {
+      if (resposta.status === 200) {
         this.showSuccessAlert = true;
         if (this.showSuccessAlert == true) {
           setTimeout(() => {
