@@ -2,7 +2,7 @@
   <v-app>
     <v-container>
       <v-col cols="12" md="3">
-        <v-card @click="redirectToSinaisVitais()" class="custom-card">
+        <v-card @click="redirectToSinaisVitais()" class="custom-card" id="v-card">
           <v-card-title class="custom-card-title">
             <v-icon color="white">mdi-heart-pulse</v-icon>
             <h3 class="text-center">Sinais Vitais</h3>
@@ -10,7 +10,7 @@
         </v-card>
       </v-col>
       <v-col cols="12" md="3">
-        <v-card @click="redirectToHemodinamica()" class="custom-card">
+        <v-card @click="redirectToHemodinamica()" class="custom-card" id="v-card">
           <v-card-title class="custom-card-title">
             <v-icon color="white">mdi-water-outline</v-icon>
             <h3 class="text-center">Hemodinâmica</h3>
@@ -18,7 +18,7 @@
         </v-card>
       </v-col>
       <v-col cols="12" md="3">
-        <v-card @click="redirectToRespiracao()" class="custom-card">
+        <v-card @click="redirectToRespiracao()" class="custom-card" id="v-card">
           <v-card-title class="custom-card-title">
             <v-icon color="white">mdi-lungs</v-icon>
             <h3 class="text-center">Respiração</h3>
@@ -26,7 +26,7 @@
         </v-card>
       </v-col>
       <v-col cols="12" md="3">
-        <v-card @click="redirectToNeurologico()" class="custom-card">
+        <v-card @click="redirectToNeurologico()" class="custom-card" id="v-card">
           <v-card-title class="custom-card-title">
             <v-icon color="white">mdi-brain</v-icon>
             <h3 class="text-center">Neurolôgico</h3>
@@ -74,48 +74,69 @@
     
     <v-card-title v-if="!dadosNaoEncontrados" class="title" align="start"><h2>Dashboard</h2></v-card-title>
     <v-row v-if="!dadosNaoEncontrados" class="chart">
-      <v-col cols="12" md="4">
-        <v-responsive>
-          <v-row class="alerta-tempertatura">
-            <v-col cols="12" sm="6">
-              <v-alert
-                v-if="verificarTemperaturaExcedida()"
-                type="error"
-                dense
-              >
-              Foi registrada ao menos uma temperatura acima de 37,0 ºC
-              </v-alert>
-            </v-col>
-          </v-row>
-          <v-row>
-            <v-col cols="12" sm="12">
-              <LineChart
+      <v-card class="cards-dashboards" elevation="10">
+        <v-row>
+          <v-col cols="12" md="4">
+              <v-row class="alerta-tempertatura">
+                <v-col cols="12" sm="6">
+                  <v-alert
+                    v-if="verificarTemperaturaExcedida()"
+                    type="error"
+                    dense
+                  >
+                  Foi registrada ao menos uma temperatura acima de 37,0 ºC
+                  </v-alert>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="12" sm="12">
+                    <v-responsive>
+                    <v-card-title class="title-dashboard">
+                      <h3>Temperatura</h3>
+                    </v-card-title>
+                    <LineChart
+                      v-if="dadosCarregados"
+                      :registro="registro"
+                      class="dashboard"
+                    />
+                  </v-responsive>
+                </v-col>
+              </v-row>
+          </v-col>
+        </v-row>
+      </v-card>
+      <v-card class="cards-dashboards" elevation="10">
+        <v-row>
+          <v-col cols="12" md="4">
+            <v-responsive>
+              <v-card-title class="title-dashboard">
+                <h3>Frequência Cardíaca</h3>
+              </v-card-title>
+              <DashBoardFrequenciaCardiaca
                 v-if="dadosCarregados"
-                :registro="registro"
+                :frequencia_cardiaca="frequencia_cardiaca"
                 class="dashboard"
               />
-            </v-col>
-          </v-row>
-        </v-responsive>
-      </v-col>
-      <v-col cols="12" md="4">
-        <v-responsive>
-          <DashBoardFrequenciaCardiaca
-            v-if="dadosCarregados"
-            :frequencia_cardiaca="frequencia_cardiaca"
-            class="dashboard"
-          />
-        </v-responsive>
-      </v-col>
-      <v-col cols="12" md="4">
-        <v-responsive>
-          <DashBoardPressaoArterial
-            v-if="dadosCarregados"
-            :pa_media="pa_media"
-            class="dashboard"
-          />
-        </v-responsive>
-      </v-col>
+            </v-responsive>
+          </v-col>
+        </v-row>
+      </v-card>
+      <v-card class="cards-dashboards" elevation="10">
+        <v-row>
+          <v-col cols="12" md="4">
+            <v-responsive>
+              <v-card-title class="title-dashboard">
+                <h3>Pressão Arterial</h3>
+              </v-card-title>
+              <DashBoardPressaoArterial
+                v-if="dadosCarregados"
+                :pa_media="pa_media"
+                class="dashboard"
+              />
+            </v-responsive>
+          </v-col>
+        </v-row>
+      </v-card>
     </v-row>
   </v-app>
 </template>
@@ -229,7 +250,7 @@ export default {
 </script>
 
 <style scoped>
-.v-card {
+#v-card {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -248,7 +269,7 @@ export default {
   margin-top: -45px;
   border-radius: 10px;
 }
-.v-card:hover {
+#v-card:hover {
   background-color: #6273dd;
 }
 .v-card__title {
@@ -260,6 +281,13 @@ export default {
 
 .title {
   justify-content: center;
+  text-align: center;
+  color: #6273dd;
+  margin-top: 40px;
+}
+
+.title-dashboard {
+  margin-top: 5px;
   text-align: center;
   color: #6273dd;
 }
@@ -288,6 +316,16 @@ export default {
   text-overflow: ellipsis;
 }
 
+.cards-dashboards {
+  max-width: 650px;
+  margin: 20px;
+  border-radius: 15px;
+  display: flex;
+  padding: 25px;
+  flex-direction: row;
+  justify-content: center;
+}
+
 @media screen and (max-width: 830px) {
   .container {
     display: flex;
@@ -303,7 +341,7 @@ export default {
     height: 250px;
   }
 
-  .v-card {
+  #v-card {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -313,11 +351,6 @@ export default {
 
   .v-card__title {
     font-size: 0.8rem;
-  }
-
-  .title {
-    margin-top: 40px;
-    color: #6273dd;
   }
 
   .dashboard-temperatura,
@@ -331,12 +364,11 @@ export default {
   .chart {
     height: 100px;
     display: flex;
-    align-items: flex-start;
-    /* justify-content: center; */
-    margin: auto;
     width: auto;
     height: auto;
+    justify-content: space-around;
   }
+
   .flex-row {
     flex-direction: row;
   }
@@ -353,6 +385,10 @@ export default {
 
   .alerta-centralizado {
     margin: auto;
+  }
+
+  #app {
+    background-color: #F4F5F7;
   }
 }
 </style>
