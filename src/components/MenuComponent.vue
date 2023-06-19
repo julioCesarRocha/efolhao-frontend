@@ -35,28 +35,29 @@
       </v-col>
     </v-container>
     <v-form>
+     <div class="flex flex-row col-12">
       <v-row align="start" class="dados-paciente flex flex-row">
-        <div class="flex flex-row col-12">
-          <v-col cols="12" md="6">
-            <label class="title"><b>Paciente</b></label>
-            <v-text-field clearable v-model="nome" disabled></v-text-field>
-          </v-col>
-          <v-col cols="12" md="6">
-            <label class="title"><b>Internação</b></label>
-            <v-text-field
-              clearable
-              v-model="data_internacao"
-              disabled
-            ></v-text-field>
-          </v-col>
-        </div>
-        <v-col cols="12">
-          <div class="text-right">
-            <v-btn color="success" @click="altaPaciente">Alta</v-btn>
-          </div>
+        <v-col cols="12" md="6">
+          <v-row>
+            <v-col cols="4">
+              <label class="title"><b>Paciente</b></label>
+              <br />
+              <h3 class="nome">{{ nome }}</h3>
+            </v-col>
+            <v-col cols="4">
+              <label class="title"><b>Internação</b></label>
+              <br />
+              <h3 class="internacao">{{ data_internacao }}</h3>
+            </v-col>
+            <v-col cols="4" class="text-right">
+              <br />
+              <v-btn color="success" @click="altaPaciente">Alta</v-btn>
+            </v-col>
+          </v-row>
         </v-col>
       </v-row>
-    </v-form>
+    </div>
+  </v-form>
 
     <br />
     <v-row class="alerta-tempertatura">
@@ -87,7 +88,7 @@
                     type="error"
                     dense
                   >
-                  Foi registrada ao menos uma temperatura acima de 37,0 ºC
+                  Foi registrada ao menos uma temperatura acima de 37,8 ºC
                   </v-alert>
                 </v-col>
               </v-row>
@@ -242,7 +243,7 @@ export default {
     verificarTemperaturaExcedida() {
       if (this.registro && this.registro.length > 0) {
         const temperaturas = this.registro.map((item) => item.temperatura);
-        return temperaturas.some((temp) => temp > 37.0);
+        return temperaturas.some((temp) => temp > 37.8);
       }
       return false;
     },
@@ -304,7 +305,7 @@ export default {
 
 .dados-paciente {
   padding: 20px;
-  margin-top: 20px;
+  margin-top: 35px;
 }
 
 .custom-card {

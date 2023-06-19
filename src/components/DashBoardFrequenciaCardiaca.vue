@@ -16,7 +16,7 @@ export default {
     const labels = this.frequencia_cardiaca.map(item => format(new Date(item.data_criacao), 'dd/MM/yyyy'));
     const ctx = this.$refs.chartCanvas.getContext('2d');
     new Chart(ctx, {
-      type: 'bar',
+      type: 'line',
       data: {
         labels: labels,
         datasets: [{
