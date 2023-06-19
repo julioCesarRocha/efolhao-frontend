@@ -88,7 +88,7 @@
           <div id="div-botoes" align="right">
             <v-btn color="success" class="mr-4" @click="salvar">Salvar</v-btn>
 
-            <v-btn color="error" class="mr-4"> Cancelar </v-btn>
+            <v-btn color="error" class="mr-4" @click="redirecionarPaciente"> Cancelar </v-btn>
           </div>
         </v-card>
       </v-container>
@@ -149,14 +149,11 @@ export default {
         }
       }
     },
-    limparFormulario() {
-      this.frequencia_respiratoria = "";
-      this.pa_sistolica = "";
-      this.pa_diastolica = "";
-      this.pa_media = "";
-      this.saturacao = "";
-      this.frequencia_cardiaca = "";
-      this.temperatura = "";
+    redirecionarPaciente() {
+      this.$router.push({
+        name: "MenuComponent",
+        params: { id: this.$route.params.id },
+      });
     },
   },
   watch: {

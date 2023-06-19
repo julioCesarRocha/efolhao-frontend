@@ -99,7 +99,7 @@
           <div id="div-botoes" align="right">
             <v-btn color="success" class="mr-4" @click="salvar">Salvar</v-btn>
 
-            <v-btn color="error" class="mr-4"> Cancelar </v-btn>
+            <v-btn color="error" class="mr-4" @click="redirecionarPaciente"> Cancelar </v-btn>
           </div>
         </v-card>
       </v-container>
@@ -154,6 +154,12 @@ export default {
           }, 3000);
         }
       }
+    },
+    redirecionarPaciente() {
+      this.$router.push({
+        name: "MenuComponent",
+        params: { id: this.$route.params.id },
+      });
     },
   },
 };

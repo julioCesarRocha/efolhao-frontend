@@ -77,6 +77,9 @@
       <v-card class="cards-dashboards" elevation="10">
         <v-row>
           <v-col cols="12" md="4">
+            <v-card-title class="title-dashboard">
+              <h2>Temperatura</h2>
+            </v-card-title>
               <v-row class="alerta-tempertatura">
                 <v-col cols="12" sm="6">
                   <v-alert
@@ -91,9 +94,6 @@
               <v-row>
                 <v-col cols="12" sm="12">
                     <v-responsive>
-                    <v-card-title class="title-dashboard">
-                      <h3>Temperatura</h3>
-                    </v-card-title>
                     <LineChart
                       v-if="dadosCarregados"
                       :registro="registro"
@@ -110,7 +110,7 @@
           <v-col cols="12" md="4">
             <v-responsive>
               <v-card-title class="title-dashboard">
-                <h3>Frequência Cardíaca</h3>
+                <h2>Frequência Cardíaca</h2>
               </v-card-title>
               <DashBoardFrequenciaCardiaca
                 v-if="dadosCarregados"
@@ -126,7 +126,7 @@
           <v-col cols="12" md="4">
             <v-responsive>
               <v-card-title class="title-dashboard">
-                <h3>Pressão Arterial</h3>
+                <h2>Pressão Arterial</h2>
               </v-card-title>
               <DashBoardPressaoArterial
                 v-if="dadosCarregados"
@@ -181,9 +181,10 @@ export default {
 
     Sinais.listarById(this.$route.params.id)
       .then((response) => {
+        console.log('resposta ' + response.data);
         this.registro = response.data;
         this.dadosCarregados = true;
-        this.nome = this.$route.params.nome;
+        this.nome = this.nome ? this.nome : this.$route.params.nome;
         this.data_internacao = format(
           new Date(this.$route.params.dataInternacao),
           "dd/MM/yyyy"
