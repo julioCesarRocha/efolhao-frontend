@@ -1,45 +1,47 @@
 <template>
   <v-app>
-    <NavbarApp />
-    <MenuComponent />
-    <LoginComponent v-if="showLogin" /> 
-    <router-view v-else></router-view>
+    <NavbarApp :logo="logo_src" :alt="app_name"/>
+    <!-- <LoginComponent />  -->
+    <!-- <PacientesComponent />
+    <MenuComponentVue /> -->
+    <SinaisVitais /> 
+    <!-- <NeurologicoComponent /> 
+    <UsuarioComponent />
+    <HemodinamicaApp />
+    <RespiracaoComponent />  -->
+      
   </v-app>
 </template>
 
 <script>
-import LoginComponent from "./components/LoginComponent.vue";
+// import MenuComponentVue from './components/MenuComponent.vue';
 import NavbarApp from "./components/Navbar.vue";
-// import MenuComponent from "./components/MenuComponent.vue";
-
+// import PacientesComponent from "./components/PacientesComponent.vue";
+import SinaisVitais from "./components/SinaisVitais.vue";
+// import HemodinamicaApp from "./components/Hemodinamica.vue";
+// import RespiracaoComponent from "./components/Respiracao.vue";
+// import LoginComponent from "./components/LoginComponent.vue";
+// import UsuarioComponent from "./components/UsuarioComponent.vue";
+// import NeurologicoComponent from "./components/NeurologicoComponent.vue";
 
 export default {
   data: function() {
     return {
       logo_src: "/logo.png",
-      app_name: "e-Sinais",
-      showLogin: true
+      app_name: "e-Sinais"
     }
   },
   components: {
-    LoginComponent,
-    // MenuComponent,
-    NavbarApp
-  },
-  created() {
-    this.$router.beforeEach((to, from, next) => {
-      // Verifica se a rota atual é diferente de http://localhost:8080/
-      if (to.fullPath !== '/') {
-        // Esconde o componente LoginComponent
-        this.showLogin = false;
-      } else {
-        // Mostra o componente LoginComponent
-        this.showLogin = true;
-      }
-      console.log(this.showLogin)
-      // Chama o próximo middleware ou a rota alvo
-      next();
-    })
-  }
+    NavbarApp,
+    // UsuarioComponent,
+    // NeurologicoComponent,
+    SinaisVitais,
+    // HemodinamicaApp,
+    // RespiracaoComponent,
+    // PacientesComponent,
+    // LoginComponent,
+    // MenuComponentVue,
+},
+
 };
 </script>

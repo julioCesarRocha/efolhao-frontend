@@ -72,19 +72,7 @@
 
           <v-row>
             <v-col cols="12" md="6">
-              <v-subheader>Índice Cardíaco (IC - (L/min/m2))</v-subheader>
-              <v-slider
-                v-model="ic"
-                step="0.5"
-                thumb-label
-                ticks
-                min="0"
-                max="20"
-              >
-              </v-slider>
-            </v-col>
-            <v-col cols="12" md="6">
-              <v-subheader>Débito Cardíaco (DC - (L/min))</v-subheader>
+              <v-subheader>Débito Cardíaco (L/min)</v-subheader>
               <v-slider
                 v-model="debito_cardiaco"
                 step="0.5"
@@ -94,6 +82,14 @@
                 max="30"
               >
               </v-slider>
+            </v-col>
+            <v-col cols="12" md="6">
+              <v-text-field
+                v-model="ic"
+                label="Índice Cardíaco (L/min/m2)"
+                required
+              >
+              </v-text-field>
             </v-col>
           </v-row>
           <div id="div-botoes" align="right">

@@ -34,30 +34,30 @@
         </v-card>
       </v-col>
     </v-container>
-    <v-form>
-     <div class="flex flex-row col-12">
-      <v-row align="start" class="dados-paciente flex flex-row">
-        <v-col cols="12" md="6">
-          <v-row>
-            <v-col cols="4">
-              <label class="title"><b>Paciente</b></label>
-              <br />
-              <h3 class="nome">{{ nome }}</h3>
+    <v-card elevation="10" id="card-paciente">
+         <!-- <div class="flex flex-row col-12"> -->
+          <!-- <v-row align="start" class="dados-paciente flex flex-row"> -->
+            <v-col cols="12" md="6">
+              <v-row>
+                <v-col cols="4">
+                  <label class="title"><b>Paciente</b></label>
+                  <br />
+                  <h3 class="nome">{{ nome }}</h3>
+                </v-col>
+                <v-col cols="4">
+                  <label class="title"><b>Internação</b></label>
+                  <br />
+                  <h3 class="internacao">{{ data_internacao }}</h3>
+                </v-col>
+                <v-col cols="4" class="text-right">
+                  <br />
+                  <v-btn color="success" @click="altaPaciente">Alta</v-btn>
+                </v-col>
+              </v-row>
             </v-col>
-            <v-col cols="4">
-              <label class="title"><b>Internação</b></label>
-              <br />
-              <h3 class="internacao">{{ data_internacao }}</h3>
-            </v-col>
-            <v-col cols="4" class="text-right">
-              <br />
-              <v-btn color="success" @click="altaPaciente">Alta</v-btn>
-            </v-col>
-          </v-row>
-        </v-col>
-      </v-row>
-    </div>
-  </v-form>
+          <!-- </v-row> -->
+        <!-- </div> -->
+    </v-card>
 
     <br />
     <v-row class="alerta-tempertatura">
@@ -285,7 +285,7 @@ export default {
   justify-content: center;
   text-align: center;
   color: #6273dd;
-  margin-top: 40px;
+  margin-top: -25px;
 }
 
 .title-dashboard {
@@ -326,6 +326,14 @@ export default {
   padding: 25px;
   flex-direction: row;
   justify-content: center;
+}
+
+#card-paciente {
+  border-radius: 15px;
+  padding: 25px;
+  width: 660px;
+  margin-top: 60px;
+  margin: 60px auto;
 }
 
 @media screen and (max-width: 830px) {

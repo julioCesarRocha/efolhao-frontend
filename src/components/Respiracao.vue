@@ -20,7 +20,7 @@
             <v-col cols="12" md="6">
               <v-select
                 v-model="modo_esp"
-                label="Modo Esp"
+                label="Modo Espontâneo"
                 :items="listaModoEsp"
                 required
               >
@@ -40,7 +40,7 @@
             <v-col cols="12" md="6">
               <v-select
                 v-model="fi02"
-                label="Fi02 (%)"
+                label="Fração Inspirada de Oxigênio - Fi02 (%)"
                 :items="listaFi02"
                 required
               >
@@ -63,7 +63,7 @@
             <v-col cols="12" md="6">
               <v-text-field
                 v-model="volume_corrente"
-                label="Volume Corrente"
+                label="Volume Corrente (ml)"
                 required
               >
               </v-text-field>
