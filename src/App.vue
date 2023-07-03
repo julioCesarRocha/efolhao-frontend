@@ -4,7 +4,7 @@
     <!-- <LoginComponent />  -->
     <!-- <PacientesComponent />
     <MenuComponentVue /> -->
-    <PacientesComponent /> 
+    <MenuComponentVue /> 
     <!-- <NeurologicoComponent /> 
     <UsuarioComponent />
     <HemodinamicaApp />
@@ -14,9 +14,9 @@
 </template>
 
 <script>
-// import MenuComponentVue from './components/MenuComponent.vue';
+import MenuComponentVue from './components/MenuComponent.vue';
 import NavbarApp from "./components/Navbar.vue";
-import PacientesComponent from "./components/PacientesComponent.vue";
+// import PacientesComponent from "./components/PacientesComponent.vue";
 // import SinaisVitais from "./components/SinaisVitais.vue";
 // import HemodinamicaApp from "./components/Hemodinamica.vue";
 // import RespiracaoComponent from "./components/Respiracao.vue";
@@ -38,9 +38,9 @@ export default {
     // SinaisVitais,
     // HemodinamicaApp,
     // RespiracaoComponent,
-    PacientesComponent,
+    // PacientesComponent,
     // LoginComponent,
-    // MenuComponentVue,
+    MenuComponentVue,
 },
 
 };
