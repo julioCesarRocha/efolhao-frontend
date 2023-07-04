@@ -1,16 +1,18 @@
 <template>
   <v-app>
-    <NavbarApp />
-    <MenuComponent />
-    <LoginComponent v-if="showLogin" /> 
-    <router-view v-else></router-view>
+    <NavbarApp :logo="logo_src" :alt="app_name"/>
+    <!-- <LoginComponent />  -->
+    <PacientesComponent />
+    <!-- <MenuComponentVue /> -->
+    <!-- <MenuComponentVue />  -->
   </v-app>
 </template>
 
 <script>
-import LoginComponent from "./components/LoginComponent.vue";
+// import LoginComponent from "./components/LoginComponent.vue";
 import NavbarApp from "./components/Navbar.vue";
 // import MenuComponent from "./components/MenuComponent.vue";
+import PacientesComponent from "./components/PacientesComponent.vue";
 
 
 export default {
@@ -22,9 +24,10 @@ export default {
     }
   },
   components: {
-    LoginComponent,
+    // LoginComponent,
     // MenuComponent,
-    NavbarApp
+    NavbarApp,
+    PacientesComponent
   },
   created() {
     this.$router.beforeEach((to, from, next) => {

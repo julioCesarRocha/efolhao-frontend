@@ -6,37 +6,39 @@
     </v-card-title>
     <v-card class="custom-card" elevation="10">
       <v-row class="cabecalho">
-        <v-col cols="6">
-          <h3>NOME</h3>
-        </v-col>
-        <v-col cols="6" class="internacao">
-          <h3>INTERNAÇÃO</h3>
-        </v-col>
-      </v-row>
-      <v-divider :thickness="7"></v-divider>
+          <v-col cols="6">
+            <h3>NOME</h3>
+          </v-col>
+          <v-col cols="6" class="internacao">
+            <h3>INTERNAÇÃO</h3>
+          </v-col>
+        </v-row>
+        <v-divider :thickness="7"></v-divider>
       <v-card-text>
-        <v-list-item v-for="patient in patients" :key="patient.id" @click="detalharPaciente(patient.id, patient.nome, patient.data_criacao)">
-          <input type="hidden" :value="patient.id" />
-          <v-list-item-content>
-            <v-row>
-              <v-col cols="6">
-                <v-list-item-title>{{ patient.nome }}</v-list-item-title>
-              </v-col>
-              <v-col cols="6" align="right">
-                <v-list-item-subtitle>{{
-                  new Date(patient.data_criacao).toLocaleDateString("pt-BR")}}
-                </v-list-item-subtitle>
-              </v-col>
-            </v-row>
-            <v-divider :thickness="7"></v-divider>
-          </v-list-item-content>
-        </v-list-item>
+          <v-list-item v-for="patient in patients" :key="patient.id" @click="detalharPaciente(patient.id, patient.nome, patient.data_criacao)">
+            <input type="hidden" :value="patient.id" />
+            <v-list-item-content>
+              <v-row>
+                <v-col cols="6">
+                  <v-list-item-title>{{ patient.nome }}</v-list-item-title>
+                </v-col>
+                <v-col cols="6" align="right">
+                  <v-list-item-subtitle>{{
+                    new Date(patient.data_criacao).toLocaleDateString("pt-BR")}}
+                  </v-list-item-subtitle>
+                </v-col>
+              </v-row>
+              <v-divider :thickness="7"></v-divider>
+            </v-list-item-content>
+          </v-list-item>
       </v-card-text>
     </v-card>
   </v-app>
 </template>
 
 <script>
+import Usuario from "../services/usuario";
+
 export default {
   data() {
     return {
@@ -50,18 +52,23 @@ export default {
           value: "idade",
         },
       ],
-      patients: [
-        { id: 1, nome: "João Paulo", data_criacao: "2023-01-01" },
-        { id: 2, nome: "Maria Eduarda", data_criacao: "2023-02-01" },
-        { id: 3, nome: "José Augusto", data_criacao: "2023-03-01" },
-        { id: 4, nome: "Ana Carla", data_criacao: "2023-04-01" },
-        { id: 5, nome: "Pedro Henrique", data_criacao: "2023-05-01" },
-      ],
+      patients: [],
     };
   },
+  mounted() {
+    this.fetchPatients();
+  },
   methods: {
+    async fetchPatients() {
+      try {
+        const response = await Usuario.getPacientes();
+        this.patients = response.data;
+      } catch (error) {
+        console.error(error);
+      }
+    },
     detalharPaciente(id, nome, dataInternacao) {
-      this.$router.push({ name: "MenuComponent", params: { id: id, nome: nome, dataInternacao: dataInternacao } });
+      this.$router.push({ name: "MenuComponent", params: { id: id, nome: nome, dataInternacao: dataInternacao} });
     },
     cadastrarPaciente() {
       this.$router.push({ name: "UsuarioComponent" });
