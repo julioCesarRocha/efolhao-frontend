@@ -38,13 +38,17 @@
           </v-row>
           <v-row>
             <v-col cols="12" md="6">
-              <v-select
+              <v-subheader>Fração Inspirada de Oxigênio - Fi02 (%)</v-subheader>
+              <v-slider
                 v-model="fi02"
-                label="Fração Inspirada de Oxigênio - Fi02 (%)"
-                :items="listaFi02"
+                step="0.5"
+                thumb-label
+                ticks
+                min="21"
+                max="100"
                 required
               >
-              </v-select>
+              </v-slider>
             </v-col>
             <v-col cols="12" md="6">
               <v-text-field
@@ -104,7 +108,7 @@ export default {
         "VM Em Modo Espontâneo/CPAP",
       ],
       listaModoVm: ["CPAP", "PCV", "VCV"],
-      listaFi02: [24, 28, 32, 36],
+      // listaFi02: [24, 28, 32, 36],
     };
   },
 

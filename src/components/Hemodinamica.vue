@@ -18,12 +18,17 @@
         <v-card class="custom-card" elevation="10">
           <v-row>
             <v-col cols="12" md="6">
-              <v-text-field
+              <v-subheader>Pressão Venosa Central (PVC)</v-subheader>
+              <v-slider
                 v-model="pressao_venosa_central"
-                label="Pressão Venosa Central (PVC)"
+                step="0.5"
+                thumb-label
+                ticks
+                min="-10"
+                max="30"
                 required
               >
-              </v-text-field>
+              </v-slider>
             </v-col>
             <v-col cols="12" md="6">
               <v-text-field
@@ -80,6 +85,7 @@
                 ticks
                 min="0"
                 max="30"
+                @change="calcularIc"
               >
               </v-slider>
             </v-col>
@@ -105,6 +111,7 @@
 
 <script>
 import Hemodinamica from "../services/hemodinamica";
+import Usuario from "../services/usuario";
 
 export default {
   name: "HemodinamicaApp",
@@ -157,6 +164,16 @@ export default {
         params: { id: this.$route.params.id },
       });
     },
+    calcularIc() {
+      Usuario.getUsuario(this.$route.params.id)
+      .then((response) => {
+        var indiceCorporeo = (response.data.peso*4)/ response.data.peso + 90;
+        this.ic = parseFloat((this.debito_cardiaco / indiceCorporeo).toFixed(4));
+      }).catch((error) => {
+      console.error(error);
+    });
+
+    }
   },
 };
 </script>

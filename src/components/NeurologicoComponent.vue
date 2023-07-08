@@ -43,7 +43,17 @@
         </v-row>
         <v-row>
           <v-col cols="12" md="6">
-            <v-text-field v-model="pic" label="Pressão Intracraniana (PIC)" required />        
+            <v-subheader>Pressão Intracraniana (PIC)</v-subheader>
+              <v-slider
+                v-model="pic"
+                step="1"
+                thumb-label
+                ticks
+                min="0"
+                max="60"
+                required
+              >
+              </v-slider>
           </v-col>
           <v-col cols="12" md="6">
             <v-text-field v-model="sj02" label="SjO2" required />        
