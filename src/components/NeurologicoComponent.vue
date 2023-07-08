@@ -43,7 +43,7 @@
         </v-row>
         <v-row>
           <v-col cols="12" md="6">
-            <v-text-field v-model="pic" label="PIC" required />        
+            <v-text-field v-model="pic" label="Pressão Intracraniana (PIC)" required />        
           </v-col>
           <v-col cols="12" md="6">
             <v-text-field v-model="sj02" label="SjO2" required />        
@@ -140,7 +140,7 @@ export default {
         this.showSuccessAlert = true;
         if (this.showSuccessAlert == true) {
           setTimeout(() => {
-            this.$router.push({ name: "Pacientes", params: { id: this.$route.params.id } });
+            this.$router.push({ name: "MenuComponent", params: { id: this.$route.params.id } });
           }, 3000);
         }
       }

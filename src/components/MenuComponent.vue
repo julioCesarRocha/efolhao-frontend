@@ -144,11 +144,11 @@
 
 <script>
 import LineChart from "@/components/DashBoard.vue";
-// import Sinais from "../services/sinaisvitais";
+import Sinais from "../services/sinaisvitais";
 import DashBoardFrequenciaCardiaca from "@/components/DashBoardFrequenciaCardiaca.vue";
 import DashBoardPressaoArterial from "@/components/DashBoardPressaoArterial.vue";
-// import { format } from "date-fns";
-// import Usuario from "../services/usuario";
+import { format } from "date-fns";
+import Usuario from "../services/usuario";
 
 export default {
   components: {
@@ -168,40 +168,38 @@ export default {
     };
   },
   mounted() {
-    // Usuario.getUsuario(this.$route.params.id)
-    // .then((response) => {
-    //   this.nome = 'Julio Cesar';
-    //   this.data_internacao = '17/06/2023';
-    // })
-    // .catch((error) => {
-    //   console.error(error);
-    // });
-    this.dadosCarregados = true;
-    this.nome = 'Julio Cesar';
-    this.data_internacao = '17/06/2023';
-    this.registro = [{"id_sinal_vital": "42cf785d-8efe-4f1c-99fa-9feca8f96ee9", "temperatura": "35.50", "frequencia_respiratoria": 90, "saturacao": 98, "frequencia_cardiaca": 98, "pa_sistolica": "120.00", "pa_diastolica": "80.00", "pa_media": "93.33", "data_criacao": "2023-06-08", "id_usuario": "d2b08594-d0ac-4bf7-a1f3-a78480a4d00d"}, {"id_sinal_vital": "59e08ab6-a2c2-4dd4-ac8f-68e5a979d38b", "temperatura": "39.50", "frequencia_respiratoria": 98, "saturacao": 98, "frequencia_cardiaca": 98, "pa_sistolica": "100.00", "pa_diastolica": "80.00", "pa_media": "86.67", "data_criacao": "2023-06-08", "id_usuario": "37b6d7b6-68c4-4460-9580-8b6e997e0475"}, {"id_sinal_vital": "e8f052e1-f356-42fa-99a5-b57907a6449b", "temperatura": "36.00", "frequencia_respiratoria": 90, "saturacao": 98, "frequencia_cardiaca": 98, "pa_sistolica": "90.00", "pa_diastolica": "80.00", "pa_media": "83.33", "data_criacao": "2023-06-08", "id_usuario": "c9e70300-7863-43fc-8f37-2eb23df699f7"}, {"id_sinal_vital": "ba0ccf29-b362-4827-a228-be40ed920f14", "temperatura": "39.00", "frequencia_respiratoria": 98, "saturacao": 98, "frequencia_cardiaca": 98, "pa_sistolica": "130.00", "pa_diastolica": "80.00", "pa_media": "96.67", "data_criacao": "2023-06-08", "id_usuario": "c9e70300-7863-43fc-8f37-2eb23df699f7"}];
-    this.frequencia_cardiaca = [{"id_sinal_vital": "42cf785d-8efe-4f1c-99fa-9feca8f96ee9", "temperatura": "35.50", "frequencia_respiratoria": 90, "saturacao": 98, "frequencia_cardiaca": 98, "pa_sistolica": "120.00", "pa_diastolica": "80.00", "pa_media": "93.33", "data_criacao": "2023-06-08", "id_usuario": "d2b08594-d0ac-4bf7-a1f3-a78480a4d00d"}, {"id_sinal_vital": "59e08ab6-a2c2-4dd4-ac8f-68e5a979d38b", "temperatura": "39.50", "frequencia_respiratoria": 98, "saturacao": 98, "frequencia_cardiaca": 98, "pa_sistolica": "100.00", "pa_diastolica": "80.00", "pa_media": "86.67", "data_criacao": "2023-06-08", "id_usuario": "37b6d7b6-68c4-4460-9580-8b6e997e0475"}, {"id_sinal_vital": "e8f052e1-f356-42fa-99a5-b57907a6449b", "temperatura": "36.00", "frequencia_respiratoria": 90, "saturacao": 98, "frequencia_cardiaca": 98, "pa_sistolica": "90.00", "pa_diastolica": "80.00", "pa_media": "83.33", "data_criacao": "2023-06-08", "id_usuario": "c9e70300-7863-43fc-8f37-2eb23df699f7"}, {"id_sinal_vital": "ba0ccf29-b362-4827-a228-be40ed920f14", "temperatura": "39.00", "frequencia_respiratoria": 98, "saturacao": 98, "frequencia_cardiaca": 98, "pa_sistolica": "130.00", "pa_diastolica": "80.00", "pa_media": "96.67", "data_criacao": "2023-06-08", "id_usuario": "c9e70300-7863-43fc-8f37-2eb23df699f7"}];
-    this.pa_media = [{"id_sinal_vital": "42cf785d-8efe-4f1c-99fa-9feca8f96ee9", "temperatura": "35.50", "frequencia_respiratoria": 90, "saturacao": 98, "frequencia_cardiaca": 98, "pa_sistolica": "120.00", "pa_diastolica": "80.00", "pa_media": "93.33", "data_criacao": "2023-06-08", "id_usuario": "d2b08594-d0ac-4bf7-a1f3-a78480a4d00d"}, {"id_sinal_vital": "59e08ab6-a2c2-4dd4-ac8f-68e5a979d38b", "temperatura": "39.50", "frequencia_respiratoria": 98, "saturacao": 98, "frequencia_cardiaca": 98, "pa_sistolica": "100.00", "pa_diastolica": "80.00", "pa_media": "86.67", "data_criacao": "2023-06-08", "id_usuario": "37b6d7b6-68c4-4460-9580-8b6e997e0475"}, {"id_sinal_vital": "e8f052e1-f356-42fa-99a5-b57907a6449b", "temperatura": "36.00", "frequencia_respiratoria": 90, "saturacao": 98, "frequencia_cardiaca": 98, "pa_sistolica": "90.00", "pa_diastolica": "80.00", "pa_media": "83.33", "data_criacao": "2023-06-08", "id_usuario": "c9e70300-7863-43fc-8f37-2eb23df699f7"}, {"id_sinal_vital": "ba0ccf29-b362-4827-a228-be40ed920f14", "temperatura": "39.00", "frequencia_respiratoria": 98, "saturacao": 98, "frequencia_cardiaca": 98, "pa_sistolica": "130.00", "pa_diastolica": "80.00", "pa_media": "96.67", "data_criacao": "2023-06-08", "id_usuario": "c9e70300-7863-43fc-8f37-2eb23df699f7"}];
-    // Sinais.listarById(this.$route.params.id)
-    //   .then((response) => {
-    //     console.log('resposta ' + response.data);
-    //     this.registro = response.data;
-    //     this.dadosCarregados = true;
-    //     this.nome = this.nome ? this.nome : this.$route.params.nome;
-    //     this.data_internacao = format(
-    //       new Date(this.$route.params.dataInternacao),
-    //       "dd/MM/yyyy"
-    //     );
-    //     this.frequencia_cardiaca = response.data;
-    //     this.pa_media = response.data;
-    //   })
-    //   .catch((error) => {
-    //     if (error.response && error.response.status === 404) {
-    //       this.dadosNaoEncontrados = true;
-    //     } else {
-    //       console.error(error);
-    //     }
-    //   });
+    Usuario.getUsuario(this.$route.params.id)
+    .then((response) => {
+      this.nome = response.data.nome;
+      this.data_internacao = format(
+        new Date(response.data.data_criacao),
+        "dd/MM/yyyy"
+      );
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+
+    Sinais.listarById(this.$route.params.id)
+      .then((response) => {
+        console.log('response.data ' + response.data);
+        this.registro = response.data;
+        this.dadosCarregados = true;
+        this.nome = this.nome ? this.nome : this.$route.params.nome;
+        this.data_internacao = this.data_internacao ? this.data_internacao : format(
+          new Date(this.$route.params.dataInternacao),
+          "dd/MM/yyyy"
+        );
+        this.frequencia_cardiaca = response.data;
+        this.pa_media = response.data;
+      })
+      .catch((error) => {
+        if (error.response && error.response.status === 404) {
+          this.dadosNaoEncontrados = true;
+        } else {
+          console.error(error);
+        }
+      });
 
   },
   methods: {

@@ -134,7 +134,7 @@ export default {
         if (this.showSuccessAlert == true) {
           setTimeout(() => {
             this.$router.push({
-              name: "Pacientes",
+              name: "MenuComponent",
               params: { id: this.$route.params.id },
             });
           }, 3000);

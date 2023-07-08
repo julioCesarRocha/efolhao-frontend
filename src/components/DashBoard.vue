@@ -19,10 +19,10 @@ export default {
     new Chart(ctx, {
       type: 'line',
       data: {
-        labels: ['01/01/2023', '02/01/2023', '03/01/2023', '04/01/2023', '05/01/2023'], // Rótulos para cada ponto do gráfico
+        labels: labels, // Rótulos para cada ponto do gráfico
         datasets: [{
           label: 'Temperatura',
-          data: [38.5, 37.5, 36.0, 36.5, 37.0],
+          data: data,
           borderColor: 'rgba(75, 192, 192, 1)',
           backgroundColor: 'rgba(75, 192, 192, 0.2)',
           borderWidth: 1
